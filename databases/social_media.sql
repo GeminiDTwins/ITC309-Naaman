@@ -89,6 +89,7 @@ CREATE TABLE `message` (
   `message_id` int NOT NULL AUTO_INCREMENT,
   `from_account_id` int NOT NULL,
   `to_account_id` int NOT NULL,
+  `message` text,
   PRIMARY KEY (`message_id`),
   KEY `FKmessage274968` (`from_account_id`),
   KEY `FKmessage523413` (`to_account_id`),
