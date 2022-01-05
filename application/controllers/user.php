@@ -51,7 +51,11 @@ class User extends CI_Controller {
     }
     
     public function signout() {
-        $this->session->sess_destroy();
+        $data = $this->session->all_userdata();
+        foreach ($data as $row => $rows_value){
+            $this->session->unset_userdata($row);
+        }
+        redirect('user');
     }
 
 }

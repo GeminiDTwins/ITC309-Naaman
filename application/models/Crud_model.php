@@ -26,7 +26,12 @@ class Crud_model extends CI_Model {
             foreach ($query->result()as $row) {
                 $store_password = $this->encrypt->decode($row->password);
                 if ($password = $store_password) {
-                    $this->session->set_userdata('id',$row->accound_id);
+                    $this->session->set_userdata('id',$row->account_id);
+                    $this->session->set_userdata('pfp',$row->pfp);
+                    if(!$this->session->set_userdata('pfp',$row->pfp)){
+                        $this->session->set_userdata('pfp','assets/Images/default_pp.png');
+                    }
+                    
                 } else {
                     return 'Wrong Password';
                 }

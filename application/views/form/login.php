@@ -13,7 +13,7 @@
                 <?php echo validation_errors(); ?>
                 <?php
                 if ($this->session->flashdata('message')) {
-                    echo '<h5> test'
+                    echo '<h5>'
                     . $this->session->flashdata('message') . '</h5>';
                 }
                 ?>
@@ -31,6 +31,8 @@
                     <input type="submit" value="Submit" />
                     <a href="<?php echo base_url(); ?>index.php/form/signup" class="btn btn-link" role="button">Register</a>
                 </div>
+                
+                <div><?php echo'<h5>'. $this->session->userdata('id') .'</h5>'?></div>
             </div>
 
 

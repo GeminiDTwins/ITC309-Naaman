@@ -15,7 +15,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
   <div class="container">
-    <a class="navbar-brand" href="#">Naaman</a>
+    <a class="navbar-brand" href="#">Naaman </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="nav-item">
-               <img src='<?php echo base_url("assets/Images/sample.jpg"); ?>' alt="" style="width: 25px;margin-top: 9px;
+               <img src='<?php echo base_url($this->session->userdata('pfp')); ?>' alt="" style="width: 25px;margin-top: 9px;
                border-radius: 50px;
                margin-left: 8px;">
             </li>
