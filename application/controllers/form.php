@@ -16,15 +16,7 @@ class Form extends CI_Controller {
     public function index() {
         $this->load->view('form/myform');
     }
-    
-    public function signup() {
 
-        if ($this->form_validation->run('signup') == FALSE) {
-            $this->load->view('form/myform');
-        } else {
-            $this->load->view('form/myform2');
-        }
-    }
 
     public function validation() {
 
@@ -43,7 +35,7 @@ class Form extends CI_Controller {
             if ($id > 0) {
                 $this->session->set_flashdata('message', 'Register Successful '
                         . 'Please enter user detail to access to the website');
-                $this->session->set_userdata('id', $id);
+                $this->session->set_userdata('tempid', $id);
                 redirect('form/detail');
             }
         }
@@ -71,9 +63,8 @@ class Form extends CI_Controller {
             $id = $this->Crud_model->insertdetail($data);
 
             if ($id > 0) {
-                $test = $this->session->userdata('id');
-                $this->session->set_flashdata('message', 'detail added to'.$test.'id');
-                redirect('user/login');
+                $this->session->set_flashdata('message', '');
+                redirect('user');
             }
         }
     }

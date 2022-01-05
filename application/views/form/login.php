@@ -10,28 +10,27 @@
 
             <div id="body">
 
-                <table width="600" align="center" border="1" cellspacing="5" cellpadding="5">
+                <?php echo validation_errors(); ?>
+                <?php
+                if ($this->session->flashdata('message')) {
+                    echo '<h5> test'
+                    . $this->session->flashdata('message') . '</h5>';
+                }
+                ?>
+                <?php echo form_open('user/validation'); ?>
 
-                    <?php echo validation_errors(); ?>
-                    <?php echo form_open('user/login'); ?>
-                    <tr>
-                        <td>Enter Your Username </td>
-                        <td><input type="text" name="username" value="<?php echo set_value('username'); ?>"/></td>
-                    </tr>
-                    <tr>
-                        <td width="230">Enter Your Password </td>
-                        <td width="329"><input type="password" name="pass"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <input type="submit" name="login" value="Login"/></td>
-                    </tr>
-                    </form>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <a href="<?php echo base_url(); ?>index.php/form/signup" class="btn btn-link" role="button">Register</a>
-                    </tr>
-                </table>
+                <h5>Username</h5>
+                <input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />
+                <span><?php echo form_error('username') ?></span>
+
+                <h5>Password</h5>
+                <input type="password" name="password" value="<?php echo set_value('password'); ?>" size="50" />
+                <span><?php echo form_error('password') ?></span>
+
+                <div>
+                    <input type="submit" value="Submit" />
+                    <a href="<?php echo base_url(); ?>index.php/form/signup" class="btn btn-link" role="button">Register</a>
+                </div>
             </div>
 
 

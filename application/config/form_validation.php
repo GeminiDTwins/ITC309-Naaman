@@ -6,7 +6,7 @@ $config = array(
         array(
             'field' => 'username',
             'label' => 'Username',
-            'rules' => 'required|min_length[5]'
+            'rules' => 'required|min_length[5]|trim'
         ),
         array(
             'field' => 'password',
@@ -63,11 +63,8 @@ $config = array(
         array(
             'field' => 'password',
             'label' => 'Password',
-            'rules' => 'required|min_length[8]',
-            'errors' => array(
-                'required' => 'Password minimum lenght is 8',
-            ),
+            'rules' => 'required'
         )
-        )
-    );
+    )
+);
 ?>
