@@ -1,11 +1,14 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Form extends CI_Controller {
-
-        public function index()
+        
+    
+    
+        public function signup()
         {
                 $this->load->helper(array('form', 'url'));
-
+                $this->load->database();
                 $this->load->library('form_validation');
 
                 if ($this->form_validation->run('signup') == FALSE)
