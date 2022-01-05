@@ -64,7 +64,7 @@ class Form extends CI_Controller {
 
             if ($id > 0) {
                 $this->session->set_flashdata('message', '');
-                redirect('user');
+                redirect('Login');
             }
         }
     }

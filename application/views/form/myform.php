@@ -25,8 +25,8 @@
         <span><?php echo form_error('email') ?></span>
 
         <div><input type="submit" value="Submit" /></div>
-
+        
     </form>
-
+    <div><a href="<?php echo base_url(); ?>index.php/login/index" class="btn btn-link" role="button">I have account</a></div>
 </body>
 </html>

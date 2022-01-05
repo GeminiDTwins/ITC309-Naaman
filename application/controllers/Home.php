@@ -7,7 +7,7 @@ class Home extends CI_Controller {
     public function __construct() {
         parent::__construct();
         if ($this->session->userdata('id')== '') {
-            redirect('user');
+            redirect('Login');
         }
 
         $this->load->model('PostModel');

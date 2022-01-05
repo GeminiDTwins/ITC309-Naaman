@@ -17,7 +17,7 @@
                     . $this->session->flashdata('message') . '</h5>';
                 }
                 ?>
-                <?php echo form_open('user/validation'); ?>
+                <?php echo form_open('Login/validation'); ?>
 
                 <h5>Username</h5>
                 <input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />
@@ -29,10 +29,10 @@
 
                 <div>
                     <input type="submit" value="Submit" />
-                    <a href="<?php echo base_url(); ?>index.php/form/signup" class="btn btn-link" role="button">Register</a>
+                    <a href="<?php echo base_url(); ?>index.php/form/index" class="btn btn-link" role="button">Register</a>
                 </div>
                 
-                <div><?php echo'<h5>'. $this->session->userdata('id') .'</h5>'?></div>
+                
             </div>
 
 

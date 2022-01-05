@@ -58,6 +58,14 @@ class Crud_model extends CI_Model {
         }
     }
 
+    function update_profile($data){
+        $id = $this->session->userdata('id');
+        $where = "account_id = '$id'";
+        $str = $this->db->update_string('account', $data, $where);
+        $this->db->query($str);
+    }    
+    
+    
     function display_records() {
         $query = $this->db->get("account");
         return $query->result();

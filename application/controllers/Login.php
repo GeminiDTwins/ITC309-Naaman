@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Login extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -42,7 +42,7 @@ class User extends CI_Controller {
             }
             else{
                 $this->session->set_flashdata('message',$result);
-                redirect('user');
+                redirect('Login');
             }
         }
     }
@@ -56,7 +56,7 @@ class User extends CI_Controller {
         foreach ($data as $row => $rows_value){
             $this->session->unset_userdata($row);
         }
-        redirect('user');
+        redirect('Login');
     }
 
 }
