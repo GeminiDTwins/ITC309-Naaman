@@ -11,14 +11,16 @@
 	<div id="body">
 		
                     <table width="600" align="center" border="1" cellspacing="5" cellpadding="5">
-                    <form method="post">
+                        
+                        <?php echo validation_errors(); ?>
+                        <?php echo form_open('user'); ?>
                         <tr>
-                            <td>Enter Your Email </td>
-                            <td><input type="text" name="email"/></td>
+                            <td>Enter Your Username </td>
+                            <td><input type="text" name="username" value="<?php echo set_value('username'); ?>"/></td>
                         </tr>
                         <tr>
                             <td width="230">Enter Your Password </td>
-                            <td width="329"><input type="password" name="pass"/></td>
+                            <td width="329"><input type="password" name="pass" value="<?php echo set_value('password'); ?>"/></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center">
