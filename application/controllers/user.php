@@ -22,18 +22,20 @@ class User extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('url_helper');
-        $this->load->library('session');
+        $this->load->library('form_validation');
+        $this->load->library('encrypt');
+        $this->load->model('Crud_model');
     }
 
-    public function index() {
-        $this->load->library('form_validation');
+    public function login() {
+
         if ($this->input->post('form/login')) {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            $que = $this->db->query("SELECT * FROM `naaman`.`account` where username='$username' and password='$password'");
+            $que = $this->db->query("`naaman`.`account` where username='$username' and password='$password'");
             $row = $que->num_rows();
             if (count($row) > 0) {
-                redirect('');
+                redirect('home');
             } else {
                 $data['error'] = "<h3 style='color:red'>Invalid username or password !</h3>";
             }
@@ -43,6 +45,10 @@ class User extends CI_Controller {
 
     public function signup() {
         $this->load->view('form');
+    }
+    
+    public function signout() {
+        $this->session->sess_destroy();
     }
 
 }

@@ -1,50 +1,81 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Form extends CI_Controller {
-        
-    
-    
-        public function signup()
-        {
-                $this->load->helper(array('form', 'url'));
-                $this->load->database();
-                $this->load->library('form_validation');
 
-                if ($this->form_validation->run('signup') == FALSE)
-                {
-                        $this->load->view('form/myform');
-                }
-                else
-                {
-                        $this->load->view('form/myform2');
-                }
+    public function __construct() {
+        parent::__construct();
+        $this->load->helper('url_helper');
+        $this->load->library('form_validation');
+        $this->load->library('encrypt');
+        $this->load->model('Crud_model');
+        $this->load->helper('date');
+    }
+    
+    public function index() {
+        $this->load->view('form/myform');
+    }
+    
+    public function signup() {
+
+        if ($this->form_validation->run('signup') == FALSE) {
+            $this->load->view('form/myform');
+        } else {
+            $this->load->view('form/myform2');
         }
-        
-        public function detail()
-        {
-            $this->load->library('form_validation');
-            
-            if ($this->form_validation->run('detail') == FALSE)
-                {
-                        $this->load->view('form/myform2');
-                }
-                else
-                {
-                        $this->load->view('form/formsuccess');
-                }
+    }
+
+    public function validation() {
+
+        if ($this->form_validation->run('signup') == FALSE) {
+            $this->load->view('form/myform');
+        } else {
+            $encryption_password = $this->encrypt->encode($this->input->post('password'));
+            $data = array(
+                'username' => $this->input->post('username'),
+                'email' => $this->input->post('email'),
+                'password' => $encryption_password,
+            );
+
+            $id = $this->Crud_model->insert($data);
+
+            if ($id > 0) {
+                $this->session->set_flashdata('message', 'Register Successful '
+                        . 'Please enter user detail to access to the website');
+                $this->session->set_userdata('id', $id);
+                redirect('form/detail');
+            }
         }
-        
-        public function username_check($str)
-        {
-                if ($str == 'Admin'||$str == 'admin')
-                {
-                        $this->form_validation->set_message('username_check', 'The {field} field can not be the word "Admin"');
-                        return FALSE;
-                }
-                else
-                {
-                        return TRUE;
-                }
+    }
+
+    public function detail() {
+        $this->load->view('form/myform2');
+    }
+
+    public function insertdetail() {
+        if ($this->form_validation->run('detail') == FALSE) {
+            $this->load->view('form/myform2');
+        } else {
+
+            $data = array(
+                'f_name' => $this->input->post('fname'),
+                'l_name' => $this->input->post('lname'),
+                'address' => $this->input->post('address'),
+                'postcode' => $this->input->post('postcode'),
+                'phone_number' => $this->input->post('pnumber'),
+                'gender' => $this->input->post('gender'),
+                'created_at' => date(DATE_COOKIE, time()) ,
+            );
+
+            $id = $this->Crud_model->insertdetail($data);
+
+            if ($id > 0) {
+                $test = $this->session->userdata('id');
+                $this->session->set_flashdata('message', 'detail added to'.$test.'id');
+                redirect('user/login');
+            }
         }
+    }
+
 }

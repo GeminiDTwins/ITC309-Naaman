@@ -6,7 +6,7 @@ $config = array(
         array(
             'field' => 'username',
             'label' => 'Username',
-            'rules' => 'callback_username_check'
+            'rules' => 'required|min_length[5]'
         ),
         array(
             'field' => 'password',
@@ -31,11 +31,6 @@ $config = array(
         array(
             'field' => 'fname',
             'label' => 'First Name',
-            'rules' => 'required'
-        ),
-        array(
-            'field' => 'lname',
-            'label' => 'Last Name',
             'rules' => 'required'
         ),
         array(
