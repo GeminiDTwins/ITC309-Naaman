@@ -26,18 +26,35 @@ class Crud_model extends CI_Model {
             foreach ($query->result()as $row) {
                 $store_password = $this->encrypt->decode($row->password);
                 if ($password = $store_password) {
-                    $this->session->set_userdata('id',$row->account_id);
-                    $this->session->set_userdata('pfp',$row->pfp);
-                    if(!$this->session->set_userdata('pfp',$row->pfp)){
-                        $this->session->set_userdata('pfp','assets/Images/default_pp.png');
-                    }
-                    
+                    $this->session->set_userdata('id', $row->account_id);
+                    $this->session->set_userdata('username',$row->username);
                 } else {
                     return 'Wrong Password';
                 }
             }
         } else {
             return 'username do not exist';
+        }
+    }
+
+    function login_session() {
+
+        $this->db->where('account_id', $this->session->userdata('id'));
+        $query = $this->db->get('user');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result()as $row) {
+                $this->session->set_userdata('pfp', $row->pfp);
+                if (!$this->session->set_userdata('pfp', $row->pfp)) {
+                    $this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
+                }
+
+                $this->session->set_userdata('nick', $row->nickname);
+                if (!$this->session->set_userdata('nick', $row->nickname)) {
+                    $this->session->set_userdata('nick', $this->session->userdata('username'));
+                }
+                
+                $this->session->set_userdata('status', $row->user_description);
+            }
         }
     }
 

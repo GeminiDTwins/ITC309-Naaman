@@ -3,13 +3,12 @@
     
     <div class="col-md-2 sfjhe">
         <div class=" sjfsj">
-            <img src='<?php echo base_url("assets/Images/sample.jpg"); ?>' alt="">
+            <img src='<?php echo base_url($this->session->userdata('pfp')); ?>' alt="">
             <h5 class="text-center pt-3">
-                Dehemi Vihara
+                <?php echo $this->session->userdata('nick')?>
             </h5>
             <p class="text-muted text-center">
-                Software Engineer
-                200 Followers
+                <?php echo $this->session->userdata('status')?>
             </p>
             <hr>
             <div class="text-center">
@@ -37,7 +36,7 @@
     <div class="jfheuf">
     <div class="d-flex justify-content-around">
         <div>
-            <h6><i class="fas fa-edit text-primary pr-1"></i>Share an update</h6>
+            <h6><i class="fas fa-edit text-primary pr-1"></i>Share a story</h6>
         </div>
         <div>
             <h6>
@@ -46,7 +45,7 @@
         </div>
         <div>
             <h6>
-                <i class="fas fa-book-open text-info pr-1"></i> write an article
+                <i class="fas fa-link"></i> Link
             </h6>
         </div>
     </div>

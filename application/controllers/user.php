@@ -37,6 +37,7 @@ class User extends CI_Controller {
         } else {
             $result = $this->Crud_model->can_login($this->input->post('username'),$this->input->post('password'));
             if ($result == ''){
+                $this->Crud_model->login_session();
                 redirect('Home');
             }
             else{
