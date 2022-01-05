@@ -38,11 +38,11 @@ CREATE TABLE `account` (
   `postcode` int DEFAULT NULL,
   `phone_number` int DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 
 CREATE TABLE `account_vote` (
@@ -154,7 +154,7 @@ CREATE TABLE `vote` (
 --
 -- Dumping data for table `tbl_post`
 --
-INSERT INTO `account` VALUES (1,'username','pw','fn','ln','email','address',2000,404040404,'male','2021-09-09',NULL),(2,'weisangm','admin12!','Michael','Weisang','mw@email.com','George st',2000,404040404,'M','2021-11-11','2021-11-11');
+INSERT INTO `account` VALUES (1,'username','pw','fn','ln','email','address',2000,404040404,'male','2021-09-09'),(2,'weisangm','admin12!','Michael','Weisang','mw@email.com','George st',2000,404040404,'M','2021-11-11');
 
 INSERT INTO `user` VALUES (1,'nick','man in dire stress',NULL,1),(2,'dude','sad',NULL,2);
 
