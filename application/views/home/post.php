@@ -34,52 +34,33 @@
 
         <div class="col-md-7">
 
-            <div class="jfheuf">
-                <?php echo validation_errors(); ?>
-
-                <?php echo form_open('home/posting'); ?>
-                <div>
-                    <div>
-                        <textarea name="title" cols="3" rows="1" class="form-control" placeholder="Title" required></textarea>
-                        <hr>
-                        <textarea name="description" cols="3" rows="3" class="form-control" placeholder="Write Something...." required></textarea>
-                        <h6 align="right"><button type="submit" class="btn btn-light" ><i class="fas fa-edit text-primary pr-1"></i>Share the story</button></h6>
-                    </div>
-                </div>
-                </form>
-
-            </div>
-
-
-            <!-- -->
+            <!-- story-->
             <?php foreach ($posts as $post_item): ?>
 
-
-                <div class="box1">
-                    <a style="text-decoration:none" href='<?php echo base_url('index.php/home/view_post/'.$post_item['story_id']); ?>'>
-                        <div class="d-flex skfjkk">
-                            <div class="lkt40">
-                                <img src='<?php echo base_url('assets/Images/' . $post_item['pfp']); ?>' alt="">
-
-                            </div>
-                            <div class="pl-2 pt-1">
-                                <h6><?php echo $post_item['title']; ?></h6>
-                            </div>
+                <!--<div class="jfheuf">-->
+                <div class="box1" style="margin-top: 0px">
+                    <div class="d-flex skfjkk">
+                        <div class="lkt40">
+                            <img src='<?php echo base_url('assets/Images/' . $post_item['pfp']); ?>' alt="">
 
                         </div>
-                        <hr>
-                        <p class="text-muted">
-                            <?php echo $post_item['description']; ?>
-                        </p>
-                        <hr>
-                        <div>
-
-                        </div>
-                        <div>
-
+                        <div class="pl-2 pt-1">
+                            <h6><?php echo $post_item['title']; ?></h6>
                         </div>
 
-                    </a>
+                    </div>
+                    <hr>
+                    <p class="text-muted">
+                        <?php echo $post_item['description']; ?>
+                    </p>
+                    <hr>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+
                     <div class="d-flex justify-content-around">
                         <div>
                             <i class="fa fa-heart"></i>
@@ -96,10 +77,62 @@
                     </div>
                 </div>
 
+                <!--post_comment-->
             <?php endforeach; ?>
             <!-- -->
+            <!--</div>-->
+            <div class="jfheuf" style="margin-top: 20px">
+                <?php echo validation_errors(); ?>
+
+                <?php echo form_open('home/comment_story'); ?>
+                <div>
+                    <div>
+                        <h6>Comment</h6>
+                        <hr>
+                        <input type="hidden" name="story_id" value='<?php echo $this->uri->segment(3) ?>' />
+                        <textarea name="comment" cols="3" rows="3" class="form-control" placeholder="What are your thoughts?" required></textarea>
+                        <h6 align="right"><button type="submit" class="btn btn-light" ><i class="fa fa-comment"></i> Comment</button></h6>
+                    </div>
+                </div>
+                </form>
+
+            </div>
+
+            <!--Comment-->
+            <?php foreach ($comment as $post_item): ?>
+
+                <!--<div class="jfheuf">-->
+                <div class="box1">
+                    <div class="d-flex skfjkk">
+                        <div class="lkt40">
+                            <img src='<?php echo base_url('assets/Images/' . $post_item['pfp']); ?>' alt="">
+                            
+                        </div>
+                        <div class="pl-2 pt-1">
+                            <h6><?php echo $post_item['nickname']; ?></h6>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <p>
+                        <?php echo $post_item['comment']; ?>
+                    </p>
+                    <hr class="text-muted">
+                    <div class="d-flex justify-content-around">
+                        <div class="p-2 mr-auto">
+                            <i class="fa fa-heart"></i>
+                            Like
+                        </div>
+                        
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
 
         </div>
+
+
+
         <div class="col-md-3">
             <div class="left_box">
                 <span>

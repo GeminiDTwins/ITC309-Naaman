@@ -6,7 +6,7 @@ class Crud_model extends CI_Model {
     function insert($data) {
         $this->db->insert('account', $data);
         $accountid = $this->db->insert_id();
-        $query = 'INSERT INTO `naaman`.`user`(`account_id`)VALUES (' . $accountid . ');';
+        $query = 'INSERT INTO `naaman`.`user`(`account_id`,`pfp`)VALUES (' . $accountid . ', "default_pp.png");';
         $this->db->query($query);
         return $accountid;
     }

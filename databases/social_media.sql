@@ -71,20 +71,21 @@ CREATE TABLE `article` (
 CREATE TABLE `comment` (
   `comment_id` int NOT NULL AUTO_INCREMENT,
   `account_id` int NOT NULL,
-  `story_id` int NOT NULL,
-  `article_id` int NOT NULL,
+  `story_id` int DEFAULT NULL,
+  `article_id` int DEFAULT NULL,
   `comment` varchar(255) DEFAULT NULL,
-  `vote` int NOT NULL,
+  `vote_id` int NOT NULL,
   PRIMARY KEY (`comment_id`),
+  KEY `FKcomment588163` (`account_id`),
+  KEY `vote_id2_idx` (`vote_id`),
   KEY `FKcomment710502` (`story_id`),
   KEY `FKcomment925888` (`article_id`),
-  KEY `FKcomment588163` (`account_id`),
-  KEY `vote_id2_idx` (`vote`),
   CONSTRAINT `FKcomment588163` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   CONSTRAINT `FKcomment710502` FOREIGN KEY (`story_id`) REFERENCES `story` (`story_id`),
   CONSTRAINT `FKcomment925888` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`),
-  CONSTRAINT `vote_id2` FOREIGN KEY (`vote`) REFERENCES `vote` (`vote_id`)
+  CONSTRAINT `vote_id2` FOREIGN KEY (`vote_id`) REFERENCES `vote` (`vote_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `message` (
   `message_id` int NOT NULL AUTO_INCREMENT,

@@ -22,6 +22,16 @@ class Home extends CI_Controller {
         $this->load->view('home/homepage', $data);
         $this->load->view('template/footer');
     }
+    
+    public function view_post($story_id){
+//        $story_id =  $this->uri->segment(3);
+        $data['posts'] = $this->PostModel->get_posts($story_id);
+        $data['comment'] = $this->PostModel->get_comment($story_id);
+        
+        $this->load->view('template/header');
+        $this->load->view('home/post', $data);
+        $this->load->view('template/footer');
+    }
 
     public function posting() {
         if ($this->form_validation->run('post') == FALSE) {
@@ -38,6 +48,21 @@ class Home extends CI_Controller {
         }
     }
 
+    public function comment_story() {
+        if ($this->form_validation->run('comment') == FALSE) {
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            $data = array(
+                'account_id' => $this->session->userdata('id'),
+                'story_id' => $this->input->post('story_id'),
+                'comment' => $this->input->post('comment')
+            );
+            
+            $this->PostModel->post_comment($data);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+    
     public function logout() {
         $data = $this->session->all_userdata();
         foreach ($data as $row => $rows_value) {

@@ -77,6 +77,13 @@ $config = array(
             'label' => 'Description',
             'rules' => 'required'
         )
+    ),
+    'comment' => array(
+        array(
+            'field' => 'comment',
+            'label' => 'Comment',
+            'rules' => 'required'
+        )
     )
 );
 ?>
