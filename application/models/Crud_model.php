@@ -13,9 +13,8 @@ class Crud_model extends CI_Model {
 
     function insertdetail($data) {
         $id = $this->session->userdata('tempid');
-        $where = "account_id = '$id'";
-        $str = $this->db->update_string('account', $data, $where);
-        $this->db->query($str);
+        $this->db->where('account_id', $id);
+        $this->db->update('account', $data);
         return $id;
     }
 
@@ -43,6 +42,7 @@ class Crud_model extends CI_Model {
         $query = $this->db->get('user');
         if ($query->num_rows() > 0) {
             foreach ($query->result()as $row) {
+                $this->session->set_userdata('uid', $row->user_id);
                 $this->session->set_userdata('pfp', $row->pfp);
                 if (!$this->session->set_userdata('pfp', $row->pfp)) {
                     $this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
@@ -64,7 +64,7 @@ class Crud_model extends CI_Model {
         $str = $this->db->update_string('account', $data, $where);
         $this->db->query($str);
     }    
-    
+    //^not finished
     
     function display_records() {
         $query = $this->db->get("account");

@@ -65,6 +65,18 @@ $config = array(
             'label' => 'Password',
             'rules' => 'required'
         )
+    ),
+    'post' => array(
+        array(
+            'field' => 'title',
+            'label' => 'Title',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'description',
+            'label' => 'Description',
+            'rules' => 'required'
+        )
     )
 );
 ?>
