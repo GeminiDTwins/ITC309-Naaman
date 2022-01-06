@@ -47,12 +47,13 @@ CREATE TABLE `account` (
 
 CREATE TABLE `account_vote` (
   `account_id` int NOT NULL,
-  `entity_id` int NOT NULL,
-  KEY `FKaccount_vo872398` (`entity_id`),
+  `vote_id` int DEFAULT NULL,
   KEY `FKaccount_vo495321` (`account_id`),
+  KEY `vote_id3_idx` (`vote_id`),
   CONSTRAINT `FKaccount_vo495321` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
-  CONSTRAINT `FKaccount_vo872398` FOREIGN KEY (`entity_id`) REFERENCES `vote` (`vote_id`)
+  CONSTRAINT `vote_id3` FOREIGN KEY (`vote_id`) REFERENCES `vote` (`vote_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `article` (
   `article_id` int NOT NULL AUTO_INCREMENT,

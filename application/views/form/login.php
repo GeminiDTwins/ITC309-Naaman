@@ -31,8 +31,8 @@
                     <input type="submit" value="Submit" />
                     <a href="<?php echo base_url(); ?>index.php/form/index" class="btn btn-link" role="button">Register</a>
                 </div>
-                
-                
+
+
             </div>
 
 
