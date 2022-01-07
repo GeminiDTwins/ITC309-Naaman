@@ -16,6 +16,11 @@ class register extends CI_Controller {
     public function index() {
         $this->load->view('account/register1');
     }
+    
+    public function staff_regis(){
+        $this->session->set_userdata('regis',"staff");
+        $this->load->view('account/register1');
+    }
 
 
     public function validation() {
