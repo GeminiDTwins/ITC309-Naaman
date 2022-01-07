@@ -6,7 +6,7 @@
 
         <?php echo validation_errors(); ?>
 
-        <?php echo form_open('form/validation'); ?>
+        <?php echo form_open('register/validation'); ?>
 
         <h5>Username</h5>
         <input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />

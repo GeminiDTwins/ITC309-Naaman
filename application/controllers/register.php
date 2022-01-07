@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Form extends CI_Controller {
+class register extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -14,7 +14,7 @@ class Form extends CI_Controller {
     }
     
     public function index() {
-        $this->load->view('form/myform');
+        $this->load->view('account/register1');
     }
 
 
@@ -36,18 +36,18 @@ class Form extends CI_Controller {
                 $this->session->set_flashdata('message', 'Register Successful '
                         . 'Please enter user detail to access to the website');
                 $this->session->set_userdata('tempid', $id);
-                redirect('form/detail');
+                redirect('register/detail');
             }
         }
     }
 
     public function detail() {
-        $this->load->view('form/myform2');
+        $this->load->view('account/register2');
     }
 
     public function insertdetail() {
         if ($this->form_validation->run('detail') == FALSE) {
-            $this->load->view('form/myform2');
+            $this->load->view('account/register2');
         } else {
 
             $data = array(
