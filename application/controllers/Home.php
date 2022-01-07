@@ -73,7 +73,7 @@ class Home extends CI_Controller {
         foreach ($data as $row => $rows_value) {
             $this->session->unset_userdata($row);
         }
-        redirect('user');
+        redirect('login');
     }
 
     public function view($slug = NULL) {

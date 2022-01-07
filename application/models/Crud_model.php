@@ -6,14 +6,14 @@ class Crud_model extends CI_Model {
     function insert($data) {
         $this->db->insert('account', $data);
         $accountid = $this->db->insert_id();
-        
+
         $this->db->where('account_id', $accountid);
         $query = $this->db->get('account');
         foreach ($query->result()as $row) {
-                $nickname = $row->username;
-            }
-        
-        $query = 'INSERT INTO `naaman`.`user`(`account_id`,`pfp`,`nickname`)VALUES (' . $accountid . ', "default_pp.png", "' . $nickname .'");';
+            $nickname = $row->username;
+        }
+
+        $query = 'INSERT INTO `naaman`.`user`(`account_id`,`pfp`,`nickname`)VALUES (' . $accountid . ', "default_pp.png", "' . $nickname . '");';
         $this->db->query($query);
         return $accountid;
     }
@@ -47,7 +47,27 @@ class Crud_model extends CI_Model {
 
         $this->db->where('account_id', $this->session->userdata('id'));
         $query = $this->db->get('user');
-        if ($query->num_rows() > 0) {
+
+        if ($this->session->userdata('username') == "admin") {
+            $this->session->set_userdata('interface', 1);
+        } elseif ($query->num_rows() == 0) {            
+            $query = $this->db->get('physician');
+            foreach ($query->result()as $row) {
+                $this->session->set_userdata('uid', $row->physician_id);
+                $this->session->set_userdata('pfp', $row->pfp);
+                if (!$this->session->set_userdata('pfp', $row->pfp)) {
+                    $this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
+                }
+
+                $this->session->set_userdata('nick', $row->title);
+                if (!$this->session->set_userdata('nick', $row->title)) {
+                    $this->session->set_userdata('nick', $this->session->userdata('username'));
+                }
+
+                $this->session->set_userdata('status', $row->physician_description);
+                $this->session->set_userdata('interface', 2);
+            }            
+        } elseif ($query->num_rows() > 0) {
             foreach ($query->result()as $row) {
                 $this->session->set_userdata('uid', $row->user_id);
                 $this->session->set_userdata('pfp', $row->pfp);
@@ -61,6 +81,7 @@ class Crud_model extends CI_Model {
                 }
 
                 $this->session->set_userdata('status', $row->user_description);
+                $this->session->set_userdata('interface', 3);
             }
         }
     }
