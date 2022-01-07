@@ -9,6 +9,7 @@
                 </h5>
                 <p class="text-muted text-center">
                     <?php echo $this->session->userdata('status') ?>
+                    <?php echo $this->session->userdata('interface')  ?>
                 </p>
                 <hr>
                 <div class="text-center">
