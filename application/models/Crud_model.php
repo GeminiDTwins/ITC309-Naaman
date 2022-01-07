@@ -6,7 +6,14 @@ class Crud_model extends CI_Model {
     function insert($data) {
         $this->db->insert('account', $data);
         $accountid = $this->db->insert_id();
-        $query = 'INSERT INTO `naaman`.`user`(`account_id`,`pfp`)VALUES (' . $accountid . ', "default_pp.png");';
+        
+        $this->db->where('account_id', $accountid);
+        $query = $this->db->get('account');
+        foreach ($query->result()as $row) {
+                $nickname = $row->username;
+            }
+        
+        $query = 'INSERT INTO `naaman`.`user`(`account_id`,`pfp`,`nickname`)VALUES (' . $accountid . ', "default_pp.png", "' . $nickname .'");';
         $this->db->query($query);
         return $accountid;
     }
@@ -26,7 +33,7 @@ class Crud_model extends CI_Model {
                 $store_password = $this->encrypt->decode($row->password);
                 if ($password = $store_password) {
                     $this->session->set_userdata('id', $row->account_id);
-                    $this->session->set_userdata('username',$row->username);
+                    $this->session->set_userdata('username', $row->username);
                 } else {
                     return 'Wrong Password';
                 }
@@ -52,20 +59,21 @@ class Crud_model extends CI_Model {
                 if (!$this->session->set_userdata('nick', $row->nickname)) {
                     $this->session->set_userdata('nick', $this->session->userdata('username'));
                 }
-                
+
                 $this->session->set_userdata('status', $row->user_description);
             }
         }
     }
 
-    function update_profile($data){
+    function update_profile($data) {
         $id = $this->session->userdata('id');
         $where = "account_id = '$id'";
         $str = $this->db->update_string('account', $data, $where);
         $this->db->query($str);
-    }    
+    }
+
     //^not finished
-    
+
     function display_records() {
         $query = $this->db->get("account");
         return $query->result();

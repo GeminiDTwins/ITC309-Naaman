@@ -56,7 +56,7 @@
 
 
                 <div class="box1">
-                    <a style="text-decoration:none" href='<?php echo base_url('index.php/home/view_post/'.$post_item['story_id']); ?>'>
+                    <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/view_post/' . $post_item['story_id']); ?>'>
                         <div class="d-flex skfjkk">
                             <div class="lkt40">
                                 <img src='<?php echo base_url('assets/Images/' . $post_item['pfp']); ?>' alt="">
@@ -73,7 +73,11 @@
                         </p>
                         <hr>
                         <div>
-
+                            <small> 
+                                <?php echo $post_item['total_like']; ?> 
+                                <i class="fa fa-heart"></i>
+                            </small>
+                            <hr>
                         </div>
                         <div>
 
@@ -82,12 +86,16 @@
                     </a>
                     <div class="d-flex justify-content-around">
                         <div>
+                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/like/' . $post_item['vote_id']); ?>'>
                             <i class="fa fa-heart"></i>
                             Like
+                            </a>
                         </div>
                         <div>
+                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/view_post/' . $post_item['story_id']); ?>'>
                             <i class="fa fa-comment"></i>
                             Comments
+                            </a>
                         </div>
                         <div>
                             <i class="fa fa-share"></i>

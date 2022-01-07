@@ -63,8 +63,8 @@ class Home extends CI_Controller {
         }
     }
 
-    public function like_story($story_id) {
-        $this->PostModel->like($story_id);
+    public function like($vote_id) {
+        $this->PostModel->like($vote_id);
         redirect($_SERVER['HTTP_REFERER']);
     }
 
