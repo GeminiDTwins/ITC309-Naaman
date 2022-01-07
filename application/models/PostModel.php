@@ -6,18 +6,22 @@ class PostModel extends CI_Model {
         $this->load->database();
     }
 
-    public function get_posts($id = FALSE) {
-        $this->db->order_by('story_id', 'DESC');
+    public function get_posts($story_id = FALSE) {
+        $this->db->select('story_id,story.user_id,title,description,nickname,pfp,count(account_vote.account_id) as total_like');
         $this->db->from('story');
         $this->db->join('user', 'story.user_id = user.user_id');
-        if ($id === FALSE) {
+        $this->db->join('account_vote', 'story.vote_id = account_vote.vote_id', 'left');
+        $this->db->group_by('story_id');
+        $this->db->order_by('story_id', 'DESC');    
+        if ($story_id === FALSE) {
             $query = $this->db->get();
             return $query->result_array();
         }
 
-        $this->db->where(array('story_id' => $id));
+        $this->db->where(array('story_id' => $story_id));
         $query = $this->db->get();
         return $query->result_array();
+
     }
 
     public function get_comment($id = FALSE) {
@@ -71,21 +75,20 @@ class PostModel extends CI_Model {
     public function like($story_id) {
 
         $this->db->trans_begin();
-        
+
         $this->db->from('story');
         $this->db->where(array('story_id' => $story_id));
-        
+
         $query = $this->db->get();
         foreach ($query->result()as $row) {
             $vote_id = $row->vote_id;
         }
         $this->db->reset_query();
-        
+
         $account_vote = array(
             'account_id' => $this->session->userdata('id'),
             'vote_id' => $vote_id
         );
-        
 
         $this->db->insert('account_vote', $account_vote);
 
@@ -94,7 +97,6 @@ class PostModel extends CI_Model {
         } else {
             $this->db->trans_commit();
         }
-        
     }
 
 }
