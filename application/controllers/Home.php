@@ -22,12 +22,12 @@ class Home extends CI_Controller {
         $this->load->view('home/homepage', $data);
         $this->load->view('template/footer');
     }
-    
-    public function view_post($story_id){
+
+    public function view_post($story_id) {
 //        $story_id =  $this->uri->segment(3);
         $data['posts'] = $this->PostModel->get_posts($story_id);
         $data['comment'] = $this->PostModel->get_comment($story_id);
-        
+
         $this->load->view('template/header');
         $this->load->view('home/post', $data);
         $this->load->view('template/footer');
@@ -42,7 +42,7 @@ class Home extends CI_Controller {
                 'title' => $this->input->post('title'),
                 'description' => $this->input->post('description'),
             );
-            
+
             $this->PostModel->posting($data);
             redirect('home');
         }
@@ -57,12 +57,17 @@ class Home extends CI_Controller {
                 'story_id' => $this->input->post('story_id'),
                 'comment' => $this->input->post('comment')
             );
-            
+
             $this->PostModel->post_comment($data);
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
-    
+
+    public function like_story($story_id) {
+        $this->PostModel->like($story_id);
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
     public function logout() {
         $data = $this->session->all_userdata();
         foreach ($data as $row => $rows_value) {

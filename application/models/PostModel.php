@@ -19,7 +19,7 @@ class PostModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
     public function get_comment($id = FALSE) {
         $this->db->order_by('comment_id', 'ASC');
         $this->db->from('comment');
@@ -66,6 +66,35 @@ class PostModel extends CI_Model {
         $this->db->set($data)->get_compiled_insert('comment', FALSE);
         $this->db->set($vote_id)->get_compiled_insert('comment', FALSE);
         $this->db->insert();
+    }
+
+    public function like($story_id) {
+
+        $this->db->trans_begin();
+        
+        $this->db->from('story');
+        $this->db->where(array('story_id' => $story_id));
+        
+        $query = $this->db->get();
+        foreach ($query->result()as $row) {
+            $vote_id = $row->vote_id;
+        }
+        $this->db->reset_query();
+        
+        $account_vote = array(
+            'account_id' => $this->session->userdata('id'),
+            'vote_id' => $vote_id
+        );
+        
+
+        $this->db->insert('account_vote', $account_vote);
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
+        }
+        
     }
 
 }
