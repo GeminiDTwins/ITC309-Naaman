@@ -54,12 +54,12 @@
                         <?php echo $post_item['description']; ?>
                     </p>
                     <hr>
-                    <div>
-                        <hr>
+                    <div>                        
                         <small> 
                             <?php echo $post_item['total_like']; ?> 
                             <i class="fa fa-heart"></i>
                         </small>
+                        <hr>
                     </div>
                     <div>
 
@@ -110,7 +110,7 @@
                     <div class="d-flex skfjkk">
                         <div class="lkt40">
                             <img src='<?php echo base_url('assets/Images/' . $post_item['pfp']); ?>' alt="">
-                            
+
                         </div>
                         <div class="pl-2 pt-1">
                             <h6><?php echo $post_item['nickname']; ?></h6>
@@ -124,10 +124,13 @@
                     <hr class="text-muted">
                     <div class="d-flex justify-content-around">
                         <div class="p-2 mr-auto">
+                            <?php echo $post_item['total_like']; ?> 
+                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/like/' . $post_item['vote_id']); ?>'>
                             <i class="fa fa-heart"></i>
                             Like
+                            </a>
                         </div>
-                        
+
                     </div>
                 </div>
 
