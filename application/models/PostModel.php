@@ -12,7 +12,7 @@ class PostModel extends CI_Model {
         $this->db->join('user', 'story.user_id = user.user_id');
         $this->db->join('account_vote', 'story.vote_id = account_vote.vote_id', 'left');
         $this->db->group_by('story_id');
-        $this->db->order_by('story_id', 'DESC');    
+        $this->db->order_by('story_id', 'DESC');
         if ($story_id === FALSE) {
             $query = $this->db->get();
             return $query->result_array();
@@ -21,13 +21,13 @@ class PostModel extends CI_Model {
         $this->db->where(array('story_id' => $story_id));
         $query = $this->db->get();
         return $query->result_array();
-
     }
 
     public function get_comment($id = FALSE) {
-        $this->db->select('comment_id,story_id,article_id,user_id,comment.comment,comment.vote_id,nickname,pfp,count(account_vote.account_id) as total_like');
+        $this->db->select('comment_id,story_id,article_id,physician_id,user_id,comment.comment,comment.vote_id,title,nickname,COALESCE(physician.pfp,user.pfp) as pfp,count(account_vote.account_id) as total_like');
         $this->db->from('comment');
-        $this->db->join('user', 'comment.account_id=user.account_id');
+        $this->db->join('user', 'comment.account_id=user.account_id','left');
+        $this->db->join('physician', 'comment.account_id=physician.account_id','left');
         $this->db->join('account_vote', 'comment.vote_id = account_vote.vote_id', 'left');
         $this->db->group_by('comment_id');
         $this->db->order_by('total_like', 'DESC');
@@ -35,7 +35,6 @@ class PostModel extends CI_Model {
             $query = $this->db->get();
             return $query->result_array();
         }
-
         $this->db->where(array('story_id' => $id));
         $query = $this->db->get();
         return $query->result_array();

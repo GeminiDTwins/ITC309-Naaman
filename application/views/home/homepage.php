@@ -9,7 +9,6 @@
                 </h5>
                 <p class="text-muted text-center">
                     <?php echo $this->session->userdata('status') ?>
-                    <?php echo $this->session->userdata('interface')  ?>
                 </p>
                 <hr>
                 <div class="text-center">
@@ -156,7 +155,15 @@
                 </div>
             </div>
 
-
+            <div class="left_box mt-3">
+                <span class="font-weight-medium">
+                    Article
+                </span>
+                <hr>
+                <a href=""> Link 1</a>
+                <hr>
+                <a href=""> Link 1</a>
+            </div>
 
             <div class="left_box mt-3">
                 <span class="font-weight-medium">

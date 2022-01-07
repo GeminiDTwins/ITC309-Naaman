@@ -25,7 +25,7 @@
                 <hr>
                 <div class="text-center">
                     <a href="" class="font-weight-bold text-decoration-none text-center">
-                        Make Appointment
+                        Manage appointment
                     </a>
                 </div>
             </div>
@@ -34,45 +34,68 @@
 
         <div class="col-md-7">
 
-            <!-- story-->
+            <div class="jfheuf">
+                <?php echo validation_errors(); ?>
+
+                <?php echo form_open('home/posting'); ?>
+                <div>
+                    <div>
+                        <textarea name="title" cols="3" rows="1" class="form-control" placeholder="Title" required></textarea>
+                        <hr>
+                        <textarea name="description" cols="3" rows="3" class="form-control" placeholder="Write Something...." required></textarea>
+                        <h6 align="right"><button type="submit" class="btn btn-light" ><i class="fas fa-edit text-primary pr-1"></i>Share the story</button></h6>
+                    </div>
+                </div>
+                </form>
+
+            </div>
+
+
+            <!-- -->
             <?php foreach ($posts as $post_item): ?>
 
-                <!--<div class="jfheuf">-->
-                <div class="box1" style="margin-top: 0px">
-                    <div class="d-flex skfjkk">
-                        <div class="lkt40">
-                            <img src='<?php echo base_url('assets/Images/' . $post_item['pfp']); ?>' alt="">
+
+                <div class="box1">
+                    <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/staff/view_post/' . $post_item['story_id']); ?>'>
+                        <div class="d-flex skfjkk">
+                            <div class="lkt40">
+                                <img src='<?php echo base_url('assets/Images/' . $post_item['pfp']); ?>' alt="">
+
+                            </div>
+                            <div class="pl-2 pt-1">
+                                <h6><?php echo $post_item['title']; ?></h6>
+                            </div>
 
                         </div>
-                        <div class="pl-2 pt-1">
-                            <h6><?php echo $post_item['title']; ?></h6>
-                        </div>
-
-                    </div>
-                    <hr>
-                    <p class="text-muted">
-                        <?php echo $post_item['description']; ?>
-                    </p>
-                    <hr>
-                    <div>                        
-                        <small> 
-                            <?php echo $post_item['total_like']; ?> 
-                            <i class="fa fa-heart"></i>
-                        </small>
                         <hr>
-                    </div>
-                    <div>
+                        <p class="text-muted">
+                            <?php echo $post_item['description']; ?>
+                        </p>
+                        <hr>
+                        <div>
+                            <small> 
+                                <?php echo $post_item['total_like']; ?> 
+                                <i class="fa fa-heart"></i>
+                            </small>
+                            <hr>
+                        </div>
+                        <div>
 
-                    </div>
+                        </div>
 
+                    </a>
                     <div class="d-flex justify-content-around">
                         <div>
+                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/staff/like/' . $post_item['vote_id']); ?>'>
                             <i class="fa fa-heart"></i>
                             Like
+                            </a>
                         </div>
                         <div>
+                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/staff/view_post/' . $post_item['story_id']); ?>'>
                             <i class="fa fa-comment"></i>
                             Comments
+                            </a>
                         </div>
                         <div>
                             <i class="fa fa-share"></i>
@@ -81,72 +104,14 @@
                     </div>
                 </div>
 
-                <!--post_comment-->
             <?php endforeach; ?>
             <!-- -->
-            <!--</div>-->
-            <div class="jfheuf" style="margin-top: 20px">
-                <?php echo validation_errors(); ?>
-                
-                
-                <?php echo form_open($this->session->userdata('link').'/comment_story'); ?>
-                <div>
-                    <div>
-                        <h6>Comment</h6>
-                        <hr>
-                        <input type="hidden" name="story_id" value='<?php echo $this->uri->segment(3) ?>' />
-                        <textarea name="comment" cols="3" rows="3" class="form-control" placeholder="What are your thoughts?" required></textarea>
-                        <h6 align="right"><button type="submit" class="btn btn-light" ><i class="fa fa-comment"></i> Comment</button></h6>
-                    </div>
-                </div>
-                </form>
-
-            </div>
-
-            <!--Comment-->
-            <?php foreach ($comment as $post_comment): ?>
-
-                <!--<div class="jfheuf">-->
-                <div class="box1">
-                    <div class="d-flex skfjkk">
-                        <div class="lkt40">
-                            <img src='<?php echo base_url('assets/Images/' . $post_comment['pfp']); ?>' alt="">
-                        </div>
-                        <div class="pl-2 pt-1">
-                            <h6>
-                                <?php echo $post_comment['nickname']; ?>
-                                <?php echo $post_comment['title'];?>
-                            </h6>
-                        </div>
-
-                    </div>
-                    <hr>
-                    <p>
-                        <?php echo $post_comment['comment']; ?>
-                    </p>
-                    <hr class="text-muted">
-                    <div class="d-flex justify-content-around">
-                        <div class="p-2 mr-auto">
-                            <?php echo $post_item['total_like']; ?> 
-                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/like/' . $post_item['vote_id']); ?>'>
-                            <i class="fa fa-heart"></i>
-                            Like
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-            <?php endforeach; ?>
 
         </div>
-
-
-
         <div class="col-md-3">
             <div class="left_box">
                 <span>
-                    Keep in touch
+                    Patient List
                 </span>
                 <hr>
                 <div class="d-flex dfkj">
@@ -189,8 +154,14 @@
                     </div>
                 </div>
             </div>
-
-
+            
+            <div class="left_box mt-3">
+                <a href=""> Create article</a>
+                <hr>
+                <a href=""> Article Link 1</a>
+                <hr>
+                <a href=""> Article Link 1</a>
+            </div>
 
             <div class="left_box mt-3">
                 <span class="font-weight-medium">

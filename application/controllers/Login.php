@@ -38,7 +38,16 @@ class Login extends CI_Controller {
             $result = $this->Crud_model->can_login($this->input->post('username'),$this->input->post('password'));
             if ($result == ''){
                 $this->Crud_model->login_session();
-                redirect('Home');
+                if ($this->session->userdata("interface") == 1){
+                    redirect('Admin');
+                }
+                elseif ($this->session->userdata("interface") == 2){
+                    $this->session->set_userdata("link","staff");
+                    redirect('Staff');
+                }elseif ($this->session->userdata("interface") == 3){
+                    $this->session->set_userdata("link","home");
+                    redirect('Home');
+                }
             }
             else{
                 $this->session->set_flashdata('message',$result);
@@ -47,6 +56,8 @@ class Login extends CI_Controller {
         }
     }
 
+    
+    
     public function signup() {
         $this->load->view('register');
     }

@@ -2,27 +2,26 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class staff extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         if ($this->session->userdata('id') == '') {
             redirect('Login');
         }
-        if ($this->session->userdata('interface') == 2) {
-            redirect('staff');
+        if ($this->session->userdata('interface') == 3) {
+            redirect('home');
         }
         $this->load->library('form_validation');
         $this->load->model('PostModel');
         $this->load->helper('url_helper');
-        $this->load->library('session');
     }
 
     public function index() {
         $data['posts'] = $this->PostModel->get_posts();
 
         $this->load->view('template/header');
-        $this->load->view('home/homepage', $data);
+        $this->load->view('home/staffpage', $data);
         $this->load->view('template/footer');
     }
 
