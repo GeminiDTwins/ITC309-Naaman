@@ -11,7 +11,7 @@
             . $this->session->flashdata('message') . '</h5>';
         }
         ?>
-        <?php echo form_open('form/insertdetail'); ?>
+        <?php echo form_open('register/insertdetail'); ?>
 
         <h5>First Name</h5>
         <input type="text" name="fname" value="<?php echo set_value('fname'); ?>" size="50" />

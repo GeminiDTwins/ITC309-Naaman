@@ -28,12 +28,12 @@ class Login extends CI_Controller {
     }
     
     public function index(){
-        $this->load->view('form/login');
+        $this->load->view('account/login');
     }
     
     public function validation(){
         if ($this->form_validation->run('login') == FALSE) {
-            $this->load->view('form/login');
+            $this->load->view('account/login');
         } else {
             $result = $this->Crud_model->can_login($this->input->post('username'),$this->input->post('password'));
             if ($result == ''){
@@ -48,7 +48,7 @@ class Login extends CI_Controller {
     }
 
     public function signup() {
-        $this->load->view('form');
+        $this->load->view('register');
     }
     
     public function signout() {

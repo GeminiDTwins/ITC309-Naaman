@@ -55,7 +55,11 @@
                     </p>
                     <hr>
                     <div>
-
+                        <hr>
+                        <small> 
+                            <?php echo $post_item['total_like']; ?> 
+                            <i class="fa fa-heart"></i>
+                        </small>
                     </div>
                     <div>
 
