@@ -26,37 +26,41 @@ class Login extends CI_Controller {
         $this->load->library('encrypt');
         $this->load->model('Crud_model');
     }
-    
-    public function index(){
-        $this->load->view('form/login');
-    }
-    
-    public function validation(){
-        if ($this->form_validation->run('login') == FALSE) {
-            $this->load->view('form/login');
-        } else {
-            $result = $this->Crud_model->can_login($this->input->post('username'),$this->input->post('password'));
-            if ($result == ''){
-                $this->Crud_model->login_session();
-                redirect('Home');
-            }
-            else{
-                $this->session->set_flashdata('message',$result);
-                redirect('Login');
-            }
-        }
-    }
 
-    public function signup() {
-        $this->load->view('form');
-    }
-    
-    public function signout() {
-        $data = $this->session->all_userdata();
-        foreach ($data as $row => $rows_value){
-            $this->session->unset_userdata($row);
-        }
-        redirect('Login');
+    public function index(){
+		if ($this->session->userdata('user_id') != '') {
+			redirect('Home');
+		}
+		$this->load->view('form/login');
+	}
+
+	public function validation()
+	{
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('form/login');
+		} else {
+			$email = $this->input->post('email');
+			$password = $this->input->post('password');
+
+			$user = $this->Crud_model->login($email);
+			$this->session->set_flashdata('login_error', $user);
+
+			if (!$user) {
+				$this->session->set_flashdata('login_error', 'Please check your email or password and try again.');
+				redirect('Login');
+			}
+
+			if (!password_verify($password, $user->password)) {
+				$this->session->set_flashdata('login_error', 'Please check your email or password and try again.');
+				redirect('Login');
+			}
+
+			unset($_SESSION['login_error']);
+			$this->Crud_model->setSession($user);
+			redirect('home');
+		}
     }
 
 }
