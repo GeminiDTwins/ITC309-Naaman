@@ -20,7 +20,8 @@ class Home extends CI_Controller {
 
     public function index() {
         $data['posts'] = $this->PostModel->get_posts();
-
+        $data['user'] = $this->PostModel->get_phys();
+        
         $this->load->view('template/header');
         $this->load->view('home/homepage', $data);
         $this->load->view('template/footer');
@@ -30,6 +31,7 @@ class Home extends CI_Controller {
 //        $story_id =  $this->uri->segment(3);
         $data['posts'] = $this->PostModel->get_posts($story_id);
         $data['comment'] = $this->PostModel->get_comment($story_id);
+        $data['user'] = $this->PostModel->get_phys();
 
         $this->load->view('template/header');
         $this->load->view('home/post', $data);

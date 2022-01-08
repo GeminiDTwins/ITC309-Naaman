@@ -114,45 +114,18 @@
                     Keep in touch
                 </span>
                 <hr>
+                <?php foreach ($user as $post_item): ?>
                 <div class="d-flex dfkj">
                     <div class="lkt40">
-                        <img src='<?php echo base_url("assets/Images/sample.jpg"); ?>' alt="">
+                        <img src='<?php echo base_url("assets/Images/". $post_item['pfp']); ?>' alt="">
 
                     </div>
                     <div>
-                        Tayy_Eb Chaudhary
+                        <?php echo $post_item['title']?>
                     </div>
                 </div>
                 <hr>
-                <div class="d-flex dfkj">
-                    <div class="lkt40">
-                        <img src='<?php echo base_url("assets/Images/2.jpg"); ?>' alt="">
-
-                    </div>
-                    <div>
-                        Danial Ahmed
-                    </div>
-                </div>
-                <hr>
-                <div class="d-flex dfkj">
-                    <div class="lkt40">
-                        <img src='<?php echo base_url("assets/Images/3.jpeg"); ?>' alt="">
-
-                    </div>
-                    <div>
-                        Usman Khan
-                    </div>
-                </div>
-                <hr>
-                <div class="d-flex dfkj">
-                    <div class="lkt40">
-                        <img src='<?php echo base_url("assets/Images/4.jpg"); ?>' alt="">
-
-                    </div>
-                    <div>
-                        Waqar Ali
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
 
             <div class="left_box mt-3">

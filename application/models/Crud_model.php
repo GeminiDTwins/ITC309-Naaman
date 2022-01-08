@@ -11,10 +11,9 @@ class Crud_model extends CI_Model {
         $query = $this->db->get('account');
         foreach ($query->result()as $row) {
             $nickname = $row->username;
-            $lastname = $row->l_name;
         }
         if ($this->session->userdata('regis')=="staff"){
-            $query = 'INSERT INTO `naaman`.`physician`(`account_id`,`pfp`,`title`)VALUES (' . $accountid . ', "default_pp.png", "Dr.' . $lastname . '");';
+            $query = 'INSERT INTO `naaman`.`physician`(`account_id`,`pfp`,`title`)VALUES (' . $accountid . ', "default_pp.png", "Dr.' . $nickname . '");';
         }else{
             $query = 'INSERT INTO `naaman`.`user`(`account_id`,`pfp`,`nickname`)VALUES (' . $accountid . ', "default_pp.png", "' . $nickname . '");';
         } 
