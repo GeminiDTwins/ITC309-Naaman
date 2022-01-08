@@ -39,6 +39,20 @@ class PostModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    public function get_phys(){
+        $this->db->from('physician');
+        $this->db->limit(5);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+    public function get_user(){
+        $this->db->from('user');
+        $this->db->limit(5);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     public function posting($data) {
         $this->db->select_max('vote_id');
