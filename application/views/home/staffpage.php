@@ -32,30 +32,11 @@
         </div>
 
 
-        <div class="col-md-7">
+        <div class="col-md-7" >
 
-            <div class="jfheuf">
-                <?php echo validation_errors(); ?>
-
-                <?php echo form_open('home/posting'); ?>
-                <div>
-                    <div>
-                        <textarea name="title" cols="3" rows="1" class="form-control" placeholder="Title" required></textarea>
-                        <hr>
-                        <textarea name="description" cols="3" rows="3" class="form-control" placeholder="Write Something...." required></textarea>
-                        <h6 align="right"><button type="submit" class="btn btn-light" ><i class="fas fa-edit text-primary pr-1"></i>Share the story</button></h6>
-                    </div>
-                </div>
-                </form>
-
-            </div>
-
-
-            <!-- -->
             <?php foreach ($posts as $post_item): ?>
 
-
-                <div class="box1">
+                <div class="box1" style="margin-top: 0px ; margin-bottom: 15px" >
                     <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/staff/view_post/' . $post_item['story_id']); ?>'>
                         <div class="d-flex skfjkk">
                             <div class="lkt40">
