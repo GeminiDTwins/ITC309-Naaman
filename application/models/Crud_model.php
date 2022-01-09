@@ -13,10 +13,10 @@ class Crud_model extends CI_Model {
             $nickname = $row->username;
         }
         if ($this->session->userdata('regis')=="staff"){
-            $query = 'INSERT INTO `naaman`.`physician`(`account_id`,`pfp`,`title`)VALUES (' . $accountid . ', "default_pp.png", "Dr.' . $nickname . '");';
-        }else{
-            $query = 'INSERT INTO `naaman`.`user`(`account_id`,`pfp`,`nickname`)VALUES (' . $accountid . ', "default_pp.png", "' . $nickname . '");';
-        } 
+            $query = 'INSERT INTO `' . $this->db->database . '`.`physician`(`account_id`,`pfp`,`title`)VALUES (' . $accountid . ', "default_pp.png", "Dr.' . $lastname . '");';
+        }else {
+			$query = 'INSERT INTO `' . $this->db->database . '`.`user`(`account_id`,`pfp`,`nickname`)VALUES (' . $accountid . ', "default_pp.png", "' . $nickname . '");';
+		}
         $this->db->query($query);
         return $accountid;
     }
@@ -105,14 +105,19 @@ class Crud_model extends CI_Model {
     }
 
     function displayuserpass($username, $password) {
-        $query = $this->db->get("`naaman`.`account` where username='$username' and password='$password'");
-        return $query->result();
-    }
+		$query = $this->db->get("`" . $this->db->database . "`.`account` where username='$username' and password='$password'");
+		return $query->result();
+	}
 
-    function displaymatch($username, $password) {
-        $query = $this->db->get("`naaman`.`account` where username='$username' and password='$password'");
-        $row = $query->num_rows();
-        return $row;
-    }
+	function displaymatch($username, $password)
+	{
+		$query = $this->db->get("`" . $this->db->database . "`.`account` where username='$username' and password='$password'");
+		$row = $query->num_rows();
+		return $row;
+	}
 
+	public function getUserData()
+	{
+		return $this->db->get_where('account', ['account_id' => $this->session->userdata('id')])->row();
+	}
 }

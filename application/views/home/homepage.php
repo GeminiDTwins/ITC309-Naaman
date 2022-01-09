@@ -2,27 +2,28 @@
     <div class="row skfjh">
 
         <div class="col-md-2 sfjhe">
-            <div class=" sjfsj">
-                <img src='<?php echo base_url($this->session->userdata('pfp')); ?>' alt="">
-                <h5 class="text-center pt-3">
-                    <?php echo $this->session->userdata('nick') ?>
-                </h5>
-                <p class="text-muted text-center">
-                    <?php echo $this->session->userdata('status') ?>
-                </p>
-                <hr>
-                <div class="text-center">
-                    <a href="" class="font-weight-bold text-decoration-none text-center">
-                        View My Profile
-                    </a>
-                </div>
-            </div>
-            <hr>
-            <div class=" sjfsj">
-                <p class="text-muted text-center">
-                    If you are struggling with any mental condition please contact us. Our specialist will help you
-                </p>
-                <hr>
+			<div class=" sjfsj">
+				<img src='<?php echo base_url($this->session->userdata('pfp')); ?>' alt="">
+				<h5 class="text-center pt-3">
+					<?php echo $this->session->userdata('nick') ?>
+				</h5>
+				<p class="text-muted text-center">
+					<?php echo $this->session->userdata('status') ?>
+				</p>
+				<hr>
+				<div class="text-center">
+					<a href="<?php echo base_url('index.php/profile'); ?>"
+					   class="font-weight-bold text-decoration-none text-center">
+						View My Profile
+					</a>
+				</div>
+			</div>
+			<hr>
+			<div class=" sjfsj">
+				<p class="text-muted text-center">
+					If you are struggling with any mental condition please contact us. Our specialist will help you
+				</p>
+				<hr>
                 <div class="text-center">
                     <a href="" class="font-weight-bold text-decoration-none text-center">
                         Make Appointment
