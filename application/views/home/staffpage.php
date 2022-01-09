@@ -121,7 +121,7 @@
 
                     </div>
                     <div>
-                        <?php echo $post_item['title']?>
+                        <?php echo $post_item['nickname']?>
                     </div>
                 </div>
                 <hr>
