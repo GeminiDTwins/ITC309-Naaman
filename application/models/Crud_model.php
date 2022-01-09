@@ -53,17 +53,18 @@ class Crud_model extends CI_Model {
 
         if ($this->session->userdata('username') == "admin") {
             $this->session->set_userdata('interface', 1);
-        } elseif ($query->num_rows() == 0) {            
-            $query = $this->db->get('physician');
-            foreach ($query->result()as $row) {
+        } elseif ($query->num_rows() == 0) {
+            $this->db->where('account_id', $this->session->userdata('id'));
+            $que = $this->db->get('physician');
+            foreach ($que->result()as $row) {
                 $this->session->set_userdata('uid', $row->physician_id);
-                $this->session->set_userdata('pfp', $row->pfp);
-                if (!$this->session->set_userdata('pfp', $row->pfp)) {
+                $this->session->set_userdata('pfp', 'assets/Images/'.$row->pfp);
+                if ($this->session->userdata('pfp') == "") {
                     $this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
                 }
 
                 $this->session->set_userdata('nick', $row->title);
-                if (!$this->session->set_userdata('nick', $row->title)) {
+                if ($this->session->userdata('nick') == "") {
                     $this->session->set_userdata('nick', $this->session->userdata('username'));
                 }
 
@@ -73,8 +74,8 @@ class Crud_model extends CI_Model {
         } elseif ($query->num_rows() > 0) {
             foreach ($query->result()as $row) {
                 $this->session->set_userdata('uid', $row->user_id);
-                $this->session->set_userdata('pfp', $row->pfp);
-                if (!$this->session->set_userdata('pfp', $row->pfp)) {
+                $this->session->set_userdata('pfp', 'assets/Images/'.$row->pfp);
+                if ($this->session->userdata('pfp') == "") {
                     $this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
                 }
 
