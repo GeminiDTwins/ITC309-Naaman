@@ -50,6 +50,12 @@
                border-radius: 50px;
                margin-left: 8px;">
             </li>
+            <li class="nav-item">
+               <a class="nav-link" aria-current="page" href="#">
+                    <i class="fas fa-sign-out-alt">Log Out</i>
+                </a>
+            </li>
+            
         </ul>
     </div>
   </div>
