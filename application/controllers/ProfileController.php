@@ -57,7 +57,7 @@ class ProfileController extends CI_Controller
 	{
 		$this->form_validation->set_rules('f_name', 'First Name', 'trim|required|alpha');
 		$this->form_validation->set_rules('l_name', 'Last Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('address', 'Address', 'trim|required|alpha');
+		$this->form_validation->set_rules('address', 'Address', 'trim|required');
 		$this->form_validation->set_rules('postal', 'Postal Code', 'trim|required|numeric');
 		$this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric');
 

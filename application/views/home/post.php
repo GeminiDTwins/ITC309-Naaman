@@ -66,13 +66,15 @@
                     </div>
 
                     <div class="d-flex justify-content-around">
-                        <div>
+                        <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/like/' . $post_item['vote_id']); ?>'>
                             <i class="fa fa-heart"></i>
                             Like
-                        </div>
+                        </a>
                         <div>
-                            <i class="fa fa-comment"></i>
-                            Comments
+                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/view_post/' . $post_item['story_id']); ?>'>
+                                <i class="fa fa-comment"></i>
+                                Comments
+                            </a>
                         </div>
                         <div>
                             <i class="fa fa-share"></i>
@@ -87,9 +89,9 @@
             <!--</div>-->
             <div class="jfheuf" style="margin-top: 20px">
                 <?php echo validation_errors(); ?>
-                
-                
-                <?php echo form_open($this->session->userdata('link').'/comment_story'); ?>
+
+
+                <?php echo form_open($this->session->userdata('link') . '/comment_story'); ?>
                 <div>
                     <div>
                         <h6>Comment</h6>
@@ -115,7 +117,7 @@
                         <div class="pl-2 pt-1">
                             <h6>
                                 <?php echo $post_comment['nickname']; ?>
-                                <?php echo $post_comment['title'];?>
+                                <?php echo $post_comment['title']; ?>
                             </h6>
                         </div>
 
@@ -127,10 +129,10 @@
                     <hr class="text-muted">
                     <div class="d-flex justify-content-around">
                         <div class="p-2 mr-auto">
-                            <?php echo $post_item['total_like']; ?> 
-                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/home/like/' . $post_item['vote_id']); ?>'>
-                            <i class="fa fa-heart"></i>
-                            Like
+                            <?php echo $post_comment['total_like']; ?>                         
+                            <a style="text-decoration:none; color:black" href='<?php echo base_url('index.php/' . $this->session->userdata('link') . '/like/' . $post_comment['vote_id']); ?>'>
+                                <i class="fa fa-heart"></i>
+                                Like
                             </a>
                         </div>
 
@@ -149,17 +151,24 @@
                     Keep in touch
                 </span>
                 <hr>
-                <?php foreach ($phys as $post_item): ?>
-                <div class="d-flex dfkj">
-                    <div class="lkt40">
-                        <img src='<?php echo base_url("assets/Images/". $post_item['pfp']); ?>' alt="">
+                <?php foreach ($user as $post_item): ?>
+                    <div class="d-flex dfkj">
+                        <div class="lkt40">
+                            <img src='<?php echo base_url("assets/Images/" . $post_item['pfp']); ?>' alt="">
 
+                        </div>
+                        <div>
+                            <?php
+                            if ($this->session->userdata('interface')==3){
+                                echo $post_item['title'];
+                            }
+                            else {
+                                echo $post_item['nickname'];
+                            }
+                            ?>
+                        </div>
                     </div>
-                    <div>
-                        <?php echo $post_item['title']?>
-                    </div>
-                </div>
-                <hr>
+                    <hr>
                 <?php endforeach; ?>                
             </div>
 
