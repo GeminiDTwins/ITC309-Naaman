@@ -51,7 +51,7 @@
                margin-left: 8px;">
             </li>
             <li class="nav-item">
-               <a class="nav-link" aria-current="page" href="#">
+               <a class="nav-link" aria-current="page" href="<?php echo base_url('index.php/login/signout'); ?>">
                     <i class="fas fa-sign-out-alt">Log Out</i>
                 </a>
             </li>
