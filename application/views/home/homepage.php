@@ -12,7 +12,7 @@
 				</p>
 				<hr>
 				<div class="text-center">
-					<a href="<?php echo base_url('profile'); ?>"
+					<a href="<?php echo base_url('index.php/profile'); ?>"
 					   class="font-weight-bold text-decoration-none text-center">
 						View My Profile
 					</a>
