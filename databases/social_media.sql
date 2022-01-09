@@ -159,13 +159,6 @@ CREATE TABLE `vote` (
 --
 -- Dumping data for table `tbl_post`
 --
-INSERT INTO `account` VALUES (1,'username','pw','fn','ln','email','address',2000,404040404,'male','2021-09-09'),(2,'weisangm','admin12!','Michael','Weisang','mw@email.com','George st',2000,404040404,'M','2021-11-11');
-
-INSERT INTO `user` VALUES (1,'nick','man in dire stress',NULL,1),(2,'dude','sad',NULL,2);
-
-INSERT INTO `story` VALUES (1,1,'i hate new year','getting older',1),(2,1,'Hope there is no bug in the code','its inevitable',2);
-
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
