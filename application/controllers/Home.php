@@ -14,6 +14,7 @@ class Home extends CI_Controller {
         }
         $this->load->library('form_validation');
         $this->load->model('PostModel');
+        $this->load->model('Crud_model');
         $this->load->helper('url_helper');
         $this->load->library('session');
     }
@@ -21,7 +22,7 @@ class Home extends CI_Controller {
     public function index() {
         $data['posts'] = $this->PostModel->get_posts();
         $data['user'] = $this->PostModel->get_phys();
-        
+
         $this->load->view('template/header');
         $this->load->view('home/homepage', $data);
         $this->load->view('template/footer');
@@ -79,6 +80,40 @@ class Home extends CI_Controller {
             $this->session->unset_userdata($row);
         }
         redirect('login');
+    }
+
+    public function appointment() {
+        $data['physicians'] = $this->Crud_model->getAllPhysicians();
+        $data['appointments'] = $this->PostModel->get_appointment($this->session->userdata('id'));
+        $data['user'] = $this->PostModel->get_phys();
+
+        $this->load->view('template/header');
+        $this->load->view('home/appointment', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function addAppointment() {
+        $this->form_validation->set_rules('physician', 'Physician', 'trim|required|numeric');
+        $this->form_validation->set_rules('cdate', 'Consultation Date', 'trim|required');
+        $this->form_validation->set_rules('ctime', 'Consultation Time', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('error', validation_errors());
+            redirect('home/appointment');
+        } else {
+            $data = array(
+                'user_id' => $this->session->userdata('uid'),
+                'physician_id' => $this->input->post('physician'),
+                'booking_date' => date("Y-m-d"),
+                'consultation_date' => $this->input->post('cdate'),
+                'time' => $this->input->post('ctime'),
+            );
+
+            $this->Crud_model->add_appointment($data);
+            $this->session->set_flashdata('success', 'Appointment successfully added.');
+
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 
     public function view($slug = NULL) {

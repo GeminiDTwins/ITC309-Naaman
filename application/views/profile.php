@@ -21,7 +21,7 @@
 						<div class="row justify-content-center">
 							<div class="col-8">
 								<div class="col-sm-3" style="margin: auto">
-									<img src="<?php echo base_url('assets/Images/'.$this->session->userdata('pfp')); ?>"
+									<img src="<?php echo base_url($this->session->userdata('pfp')); ?>"
 										 style="width: auto; height: 195px;">
 								</div>
 								<?php
