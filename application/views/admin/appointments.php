@@ -3,7 +3,7 @@
 		<h6 class="m-0 text-center">Appointments</h6>
 		<form
 			method="get"
-			action="<?php echo base_url('AdminController/add') ?>"
+			action="<?php echo base_url('index.php/AdminController/add') ?>"
 			style="margin-right: 10px"
 		>
 			<input type="hidden" name="type" value="appointment">
@@ -42,7 +42,7 @@
 								<td class="d-flex">
 									<form
 										method="get"
-										action="<?php echo base_url('AdminController/edit') ?>"
+										action="<?php echo base_url('index.php/AdminController/edit') ?>"
 										style="margin-right: 10px"
 									>
 										<input type="hidden" name="appointment_id" value="<?php echo $row->oa_id; ?>">
@@ -51,7 +51,7 @@
 									<form
 										method="post"
 										onSubmit="return confirm('Are you sure you wish to delete?');"
-										action="<?php echo base_url('AdminController/delete') ?>"
+										action="<?php echo base_url('index.php/AdminController/delete') ?>"
 									>
 										<input type="hidden" name="appointment_id" value="<?php echo $row->oa_id; ?>">
 										<button class="btn btn-danger" type="submit"><i class="fa fa-remove"></i>

@@ -38,7 +38,7 @@
 							<td class="d-flex">
 								<form
 									method="get"
-									action="<?php echo base_url('profile') ?>"
+									action="<?php echo base_url('index.php/profile') ?>"
 									style="margin-right: 10px"
 								>
 									<input type="hidden" name="user_id" value="<?php echo $row->account_id; ?>">
@@ -47,7 +47,7 @@
 								<form
 									method="post"
 									onSubmit="return confirm('Are you sure you wish to delete?');"
-									action="<?php echo base_url('AdminController/delete') ?>"
+									action="<?php echo base_url('index.php/AdminController/delete') ?>"
 								>
 									<input type="hidden" name="user_id" value="<?php echo $row->account_id; ?>">
 									<button class="btn btn-danger" type="submit"><i class="fa fa-remove"></i></button>

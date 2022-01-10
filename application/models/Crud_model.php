@@ -63,7 +63,7 @@ class Crud_model extends CI_Model
 			foreach ($query->result() as $row) {
 				$this->session->set_userdata('uid', $row->physician_id);
 				$this->session->set_userdata('pfp', $row->pfp);
-				if (!$this->session->set_userdata('pfp', $row->pfp)) {
+				if ($this->session->userdata('pfp') == "") {
 					$this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
 				}
 
@@ -79,7 +79,7 @@ class Crud_model extends CI_Model
 			foreach ($query->result() as $row) {
 				$this->session->set_userdata('uid', $row->user_id);
 				$this->session->set_userdata('pfp', $row->pfp);
-				if (!$this->session->set_userdata('pfp', $row->pfp)) {
+				if ($this->session->userdata('pfp') == "") {
 					$this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
 				}
 

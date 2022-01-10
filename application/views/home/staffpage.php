@@ -3,7 +3,7 @@
 
         <div class="col-md-2 sfjhe">
             <div class=" sjfsj">
-                <img src='<?php echo base_url($this->session->userdata('pfp')); ?>' alt="">
+                <img src='<?php echo base_url('assets/Images/'.$this->session->userdata('pfp')); ?>' alt="">
                 <h5 class="text-center pt-3">
                     <?php echo $this->session->userdata('nick') ?>
                 </h5>
