@@ -62,8 +62,8 @@ class Crud_model extends CI_Model
 			$query = $this->db->get('physician');
 			foreach ($query->result() as $row) {
 				$this->session->set_userdata('uid', $row->physician_id);
-				$this->session->set_userdata('pfp', $row->pfp);
-				if ($this->session->userdata('pfp') == "") {
+				$this->session->set_userdata('pfp', 'assets/Images/'.$row->pfp);
+				if ($this->session->userdata('pfp') == "assets/Images/") {
 					$this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
 				}
 
@@ -78,8 +78,8 @@ class Crud_model extends CI_Model
 		} elseif ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
 				$this->session->set_userdata('uid', $row->user_id);
-				$this->session->set_userdata('pfp', $row->pfp);
-				if ($this->session->userdata('pfp') == "") {
+				$this->session->set_userdata('pfp', 'assets/Images/'.$row->pfp);
+				if ($this->session->userdata('pfp') == "assets/Images/") {
 					$this->session->set_userdata('pfp', 'assets/Images/default_pp.png');
 				}
 
