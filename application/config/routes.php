@@ -55,5 +55,6 @@ $route['register'] = 'Register';
 $route['logout'] = 'Login/signout';
 $route['default_controller'] = 'Home';
 $route['profile'] = 'ProfileController';
+$route['admin'] = 'AdminController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

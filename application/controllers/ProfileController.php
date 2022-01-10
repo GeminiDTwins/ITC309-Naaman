@@ -23,7 +23,7 @@ class ProfileController extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('uid') == '') {
+		if ($this->session->userdata('interface') == '') {
 			redirect('Login');
 		}
 		$this->load->helper('url_helper');
@@ -34,9 +34,16 @@ class ProfileController extends CI_Controller
 
 	public function index()
 	{
-		$user = $this->Crud_model->getUserData();
+		if ($this->input->get('user_id') && $this->session->userdata('interface') == 1) {
 
-		$data['profile']['id'] = $user;
+			$user = $this->Crud_model->getUserData($this->input->get('user_id'));
+
+		} else {
+
+			$user = $this->Crud_model->getUserData();
+		}
+
+		$data['profile']['id'] = $user->account_id;
 		$data['profile']['f_name'] = $user->f_name ?? "";
 		$data['profile']['l_name'] = $user->l_name ?? "";
 		$data['profile']['created_at'] = 2;
@@ -55,13 +62,20 @@ class ProfileController extends CI_Controller
 
 	public function update()
 	{
-		$this->form_validation->set_rules('f_name', 'First Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('l_name', 'Last Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('f_name', 'First Name', 'trim|required');
+		$this->form_validation->set_rules('l_name', 'Last Name', 'trim|required');
 		$this->form_validation->set_rules('address', 'Address', 'trim|required');
 		$this->form_validation->set_rules('postal', 'Postal Code', 'trim|required|numeric');
 		$this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric');
 
-		$user = $this->Crud_model->getUserData();
+		if ($this->input->get('user_id') && $this->session->userdata('interface') == 1) {
+
+			$user = $this->Crud_model->getUserData($this->input->get('user_id'));
+
+		} else {
+
+			$user = $this->Crud_model->getUserData();
+		}
 		if ($this->input->post('email') != $user->email) {
 			$is_unique = '|is_unique[account.email]';
 		} else {
@@ -81,11 +95,14 @@ class ProfileController extends CI_Controller
 				'phone_number' => $this->input->post('number'),
 			);
 
-			$this->Crud_model->update_profile($data);
+			$this->Crud_model->update_profile($data, $user->account_id);
 			$this->session->set_flashdata('success', 'Profile successfully updated.');
 
-			$this->index();
-
+			if ($this->session->userdata('interface') == 1) {
+				redirect('admin');
+			} else {
+				$this->index();
+			}
 		}
 	}
 
@@ -95,18 +112,34 @@ class ProfileController extends CI_Controller
 		$this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|matches[password]');
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->index();
+			if ($this->input->post('callback')) {
+				$this->session->set_flashdata('error', validation_errors());
+				redirect($this->input->post('callback'));
+			} else {
+				$this->index();
+			}
 		} else {
+			if ($this->input->get('user_id') && $this->session->userdata('interface') == 1) {
+
+				$user = $this->Crud_model->getUserData($this->input->get('user_id'));
+
+			} else {
+
+				$user = $this->Crud_model->getUserData();
+			}
 			$encryption_password = $this->encrypt->encode($this->input->post('password'));
 			$data = array(
 				'password' => $encryption_password,
 			);
 
-			$this->Crud_model->update_profile($data);
+			$this->Crud_model->update_profile($data, $user->account_id);
 			$this->session->set_flashdata('success', 'Password successfully updated.');
 
-			$this->index();
-
+			if ($this->input->post('callback')) {
+				redirect($this->input->post('callback'));
+			} else {
+				$this->index();
+			}
 		}
 	}
 

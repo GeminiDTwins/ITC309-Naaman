@@ -39,7 +39,7 @@ class Login extends CI_Controller {
             if ($result == ''){
                 $this->Crud_model->login_session();
                 if ($this->session->userdata("interface") == 1){
-                    redirect('Admin');
+                    redirect('admin');
                 }
                 elseif ($this->session->userdata("interface") == 2){
                     $this->session->set_userdata("link","staff");

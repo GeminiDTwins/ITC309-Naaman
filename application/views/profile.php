@@ -24,7 +24,13 @@
 									<img src="<?php echo base_url($this->session->userdata('pfp')); ?>"
 										 style="width: auto; height: 195px;">
 								</div>
-								<?php echo form_open('ProfileController/update'); ?>
+								<?php
+								if ($this->input->get('user_id')) {
+									$args = '?user_id=' . $this->input->get('user_id');
+								} else {
+									$args = '';
+								}
+								echo form_open('ProfileController/update' . $args); ?>
 								<div class="form-row">
 									<div class="form-group">
 										<label for="f_name">First Name</label>
@@ -91,7 +97,13 @@
 					<div class="col">
 						<div class="row justify-content-center">
 							<div class="col-8">
-								<?php echo form_open('ProfileController/updatePassword'); ?>
+								<?php
+								if ($this->input->get('user_id')) {
+									$args = '?user_id=' . $this->input->get('user_id');
+								} else {
+									$args = '';
+								}
+								echo form_open('ProfileController/updatePassword' . $args); ?>
 								<div class="form-row">
 									<div class="form-group">
 										<div class="form-group">
