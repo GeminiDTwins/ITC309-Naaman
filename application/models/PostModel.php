@@ -26,8 +26,8 @@ class PostModel extends CI_Model {
     public function get_comment($id = FALSE) {
         $this->db->select('comment_id,story_id,article_id,physician_id,user_id,comment.comment,comment.vote_id,title,nickname,COALESCE(physician.pfp,user.pfp) as pfp,count(account_vote.account_id) as total_like');
         $this->db->from('comment');
-        $this->db->join('user', 'comment.account_id=user.account_id','left');
-        $this->db->join('physician', 'comment.account_id=physician.account_id','left');
+        $this->db->join('user', 'comment.account_id=user.account_id', 'left');
+        $this->db->join('physician', 'comment.account_id=physician.account_id', 'left');
         $this->db->join('account_vote', 'comment.vote_id = account_vote.vote_id', 'left');
         $this->db->group_by('comment_id');
         $this->db->order_by('total_like', 'DESC');
@@ -39,15 +39,32 @@ class PostModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-    
-    public function get_phys(){
+
+    public function get_appointment($id = false) {
+        $this->db->select('oa_id,booking_date, consultation_date, time, online_consultation.physician_id as physician_id,' .
+                'CONCAT(physician.title, \' \', pa.f_name, \' \', pa.l_name) as physician_name, ' .
+                'CONCAT(ua.f_name, \' \', ua.l_name) as patient_name');
+        $this->db->from('online_consultation');
+        $this->db->join('user', 'online_consultation.user_id = user.user_id ');
+        $this->db->join('physician', 'online_consultation.physician_id = physician.physician_id ');
+        $this->db->join('account as pa', 'physician.account_id = pa.account_id ');
+        $this->db->join('account as ua', 'user.account_id = ua.account_id ');
+        if ($id === FALSE) {
+            $this->db->where(array('online_consultation.user_id' => $this->session->userdata('uid')));
+            return $this->db->get()->result();
+        }
+        $this->db->where(array('online_consultation.user_id' => $id));
+        return $this->db->get()->result();
+    }
+
+    public function get_phys() {
         $this->db->from('physician');
         $this->db->limit(5);
         $query = $this->db->get();
         return $query->result_array();
     }
-    
-    public function get_user(){
+
+    public function get_user() {
         $this->db->from('user');
         $this->db->limit(5);
         $query = $this->db->get();
