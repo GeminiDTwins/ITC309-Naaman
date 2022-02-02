@@ -22,6 +22,23 @@ class PostModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+        public function get_article($article_id = FALSE) {
+        $this->db->select('article_id,article.physician_id,article.title,description,article.vote_id,physician.title,pfp,count(account_vote.account_id) as total_like');
+        $this->db->from('article');
+        $this->db->join('physician', 'article.physician_id = physician.physician_id');
+        $this->db->join('account_vote', 'article.vote_id = account_vote.vote_id', 'left');
+        $this->db->group_by('article_id');
+        $this->db->order_by('article_id', 'DESC');
+        if ($article_id === FALSE) {
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
+        $this->db->where(array('article_id' => $article_id));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     public function get_comment($id = FALSE) {
         $this->db->select('comment_id,story_id,article_id,physician_id,user_id,comment.comment,comment.vote_id,title,nickname,COALESCE(physician.pfp,user.pfp) as pfp,count(account_vote.account_id) as total_like');
@@ -40,6 +57,23 @@ class PostModel extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_commentarticle($id = FALSE) {
+        $this->db->select('comment_id,story_id,article_id,physician_id,user_id,comment.comment,comment.vote_id,title,nickname,COALESCE(physician.pfp,user.pfp) as pfp,count(account_vote.account_id) as total_like');
+        $this->db->from('comment');
+        $this->db->join('user', 'comment.account_id=user.account_id', 'left');
+        $this->db->join('physician', 'comment.account_id=physician.account_id', 'left');
+        $this->db->join('account_vote', 'comment.vote_id = account_vote.vote_id', 'left');
+        $this->db->group_by('comment_id');
+        $this->db->order_by('total_like', 'DESC');
+        if ($id === FALSE) {
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+        $this->db->where(array('article_id' => $id));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
     public function get_appointment($id = false) {
         $this->db->select('oa_id,booking_date, consultation_date, time, online_consultation.physician_id as physician_id,' .
                 'CONCAT(physician.title, \' \', pa.f_name, \' \', pa.l_name) as physician_name, ' .

@@ -389,28 +389,40 @@ INSERT INTO `naaman`.`story`
 VALUES
 (1,
 1,
-"Title 1",
-"Desc 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis, odio necessitatibus accusantium facilis obcaecati? Sequi, cupiditate? Temporibus, tenetur reprehenderit?",
+"i am feeling burned out and need advice",
+"For a while now, i am reliant on my academic achievement for self worth and mental health. But this has started to feel taxing physically and/or mentally. i have lost my motivation to progress and starting to not care about anything. If i am not going to fix this issue, i might have ruin my future where i can be happy. i don't sleep well at night and falling asleep in class. because of my previous achivement, everyone else seems to let me be. This is a blessing and a curse. No one notice my strange behaviour and i have no one to rely on. I felt more tired every passing moment and i don't know what to do. I think I'm just destined to fail at the very end of the race, but no one even seems to notice. It's lonely, and alienating.",
 1),
 (2,
 2,
-"Title 2",
-"Desc 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis, odio necessitatibus accusantium facilis obcaecati? Sequi, cupiditate? Temporibus, tenetur reprehenderit?",
+"Have you felt like losing your emotions?",
+"It's not sadness nor loneliness. i just don't felt any happiness, sadness, anger, excitement, nor any will. everything just seems 'fine' and i start to look at things from rational mind only. i am not sure if this is a good healthy life style and i am trying to understant it. Any advice?",
 2),
 (3,
 3,
-"Title 3",
-"Desc 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis, odio necessitatibus accusantium facilis obcaecati? Sequi, cupiditate? Temporibus, tenetur reprehenderit?",
+"i felt like slowly falling apart",
+"So basically i hate my current job. Going to work just make me feels anxiety and hate. i felt like i dont get paid enought for the task i've been given. i have tried to find another job but the pass 30 interview has been rejected. i am having a financial problem and felt like a failure",
 3),
 (4,
 4,
-"Title 4",
-"Desc 4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis, odio necessitatibus accusantium facilis obcaecati? Sequi, cupiditate? Temporibus, tenetur reprehenderit?",
+"Sometimes i just felt like i should feels okay and then everything will be better",
+"i this a healthy life style? should i just lie about my feeling and continue to live like this? am i just escaping my problem? please someone give me answer",
 4),
 (5,
 5,
-"Title 5",
-"Desc 5. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis, odio necessitatibus accusantium facilis obcaecati? Sequi, cupiditate? Temporibus, tenetur reprehenderit?",
+"Life just isn't",
+"Life isn’t about keeping score. It’s not about how many people call you, and it’s not about who you’ve dated, are dating or haven’t dated at all.
+
+It isn’t about who you’ve kissed, what sport you play, or which guy or girl likes you. It’s not about your shoes or your hair or the color of your skin or where you live or go to school. In fact, it’s not about grades, money, clothes or colleges that accept you or not.
+
+Life isn’t about if you have lots of friends, or if you are alone, and it’s not about how accepted or not accepted you are. Life just isn’t about that.
+
+But life is about who you love and who you hurt. It’s about how you feel about yourself. It’s about trust, happiness and compassion. It’s about sticking up for your friends and replacing inner hate with love.
+
+Life is about avoiding jealousy, overcoming ignorance and building confidence. It’s about what you say and what you mean. It’s about seeing people for who they are and not what they have.
+
+Most of all, life is about choosing to use your life to touch someone else’s in a way that could never have been achieved otherwise. These choices are what life’s about.
+
+This has kept me going. I hope this has a similar effect for someone else out there.",
 5);
 
 INSERT INTO `naaman`.`comment`

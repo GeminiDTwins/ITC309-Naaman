@@ -84,7 +84,7 @@ class Crud_model extends CI_Model
 				}
 
 				$this->session->set_userdata('nick', $row->nickname);
-				if (!$this->session->set_userdata('nick', $row->nickname)) {
+				if (!$this->session->userdata('nick', $row->nickname)) {
 					$this->session->set_userdata('nick', $this->session->userdata('username'));
 				}
 

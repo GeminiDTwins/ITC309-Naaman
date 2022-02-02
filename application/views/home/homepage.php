@@ -134,9 +134,9 @@
                     Article
                 </span>
                 <hr>
-                <a href=""> Link 1</a>
+                <a href="<?php echo base_url('index.php/home/view_article/1'); ?>"> What is Mental Health</a>
                 <hr>
-                <a href=""> Link 1</a>
+                <a href="<?php echo base_url('index.php/home/view_article/2'); ?>">Risk factors for mental health conditions</a>
             </div>
 
             <div class="left_box mt-3">

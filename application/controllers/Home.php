@@ -38,6 +38,19 @@ class Home extends CI_Controller {
         $this->load->view('home/post', $data);
         $this->load->view('template/footer');
     }
+    
+    public function view_article($article_id) {
+//        $story_id =  $this->uri->segment(3);
+        $data['posts'] = $this->PostModel->get_article($article_id);
+        $data['comment'] = $this->PostModel->get_commentarticle($article_id);
+        $data['user'] = $this->PostModel->get_phys();
+
+        $this->load->view('template/header');
+        $this->load->view('home/post', $data);
+        $this->load->view('template/footer');
+    }
+    
+    
 
     public function posting() {
         if ($this->form_validation->run('post') == FALSE) {
