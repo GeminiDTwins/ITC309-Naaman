@@ -192,6 +192,36 @@ class Crud_model extends CI_Model
 		$this->db->insert('physician', $pdata);
 	}
 
+	function update_User($data, $id)
+	{
+		$pdata = array(
+			'user_description' => $data['description'],
+		);
+		unset($data['description']);
+
+		$this->update_profile($data, $id);
+
+		$where = "account_id = '$id'";
+		$str = $this->db->update_string('user', $pdata, $where);
+		$this->db->query($str);
+	}
+
+	function add_user($data)
+	{
+		$pdata = array(
+			'user_description' => $data['description'],
+		);
+		unset($data['description']);
+
+		$this->db->insert('account', $data);
+		$accountid = $this->db->insert_id();
+
+		$pdata['account_id'] = $accountid;
+
+		$this->db->insert('user', $pdata);
+	}
+
+
 	public function getAllAppointments()
 	{
 		$this->db->select('oa_id,booking_date, consultation_date, time,' .

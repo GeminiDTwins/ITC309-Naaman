@@ -111,6 +111,15 @@ class AdminController extends CI_Controller
 
 			$this->session->set_flashdata('success', '');
 			$this->session->set_flashdata('error', '');
+		} else if ($type == 'users') {
+			$data['formType'] = 'Add';
+
+			$this->load->view('template/header');
+			$this->load->view('admin/forms/users', $data);
+			$this->load->view('template/footer');
+
+			$this->session->set_flashdata('success', '');
+			$this->session->set_flashdata('error', '');
 		}
 	}
 
@@ -287,6 +296,83 @@ class AdminController extends CI_Controller
 			$this->session->set_flashdata('success', 'Appointment successfully updated.');
 
 			redirect('admin');
+		}
+	}
+
+	// User form actions
+	public function addUser()
+	{
+		$this->form_validation->set_rules('f_name', 'First Name', 'trim|required');
+		$this->form_validation->set_rules('l_name', 'Last Name', 'trim|required');
+		$this->form_validation->set_rules('address', 'Address', 'trim|required');
+		$this->form_validation->set_rules('postal', 'Postal Code', 'trim|required|numeric');
+		$this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric');
+		$this->form_validation->set_rules('description', 'Description', 'trim');
+		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[account.email]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('AdminController/add?type=user');
+		} else {
+			$encryption_password = $this->encrypt->encode($this->input->post('password'));
+			$data = array(
+				'f_name' => $this->input->post('f_name'),
+				'l_name' => $this->input->post('l_name'),
+				'username' => $this->input->post('email'),
+				'email' => $this->input->post('email'),
+				'address' => $this->input->post('address'),
+				'postcode' => $this->input->post('postal'),
+				'phone_number' => $this->input->post('number'),
+				'description' => $this->input->post('description') ?? "",
+				'password' => $encryption_password,
+			);
+
+			$this->Crud_model->add_user($data);
+			$this->session->set_flashdata('success', 'User successfully added.');
+
+			redirect('admin');
+
+		}
+	}
+
+	public function updateUser()
+	{
+		$uid = $this->input->get('user_id');
+		$this->form_validation->set_rules('f_name', 'First Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('l_name', 'Last Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('address', 'Address', 'trim|required');
+		$this->form_validation->set_rules('postal', 'Postal Code', 'trim|required|numeric');
+		$this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric');
+		$this->form_validation->set_rules('description', 'Description', 'trim');
+
+		$user = $this->Crud_model->getUserData($uid);
+
+		if ($this->input->post('email') != $user->email) {
+			$is_unique = '|is_unique[account.email]';
+		} else {
+			$is_unique = '';
+		}
+		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email' . $is_unique);
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('AdminController/edit?user_id=' . $uid);
+		} else {
+			$data = array(
+				'f_name' => $this->input->post('f_name'),
+				'l_name' => $this->input->post('l_name'),
+				'email' => $this->input->post('email'),
+				'address' => $this->input->post('address'),
+				'postcode' => $this->input->post('postal'),
+				'phone_number' => $this->input->post('number'),
+				'description' => $this->input->post('description') ?? "",
+			);
+
+			$this->Crud_model->update_User($data, $user->account_id);
+			$this->session->set_flashdata('success', 'Profile successfully updated.');
+
+			redirect('admin');
+
 		}
 	}
 
