@@ -24,7 +24,49 @@ class AdminController extends CI_Controller
 		$data['appointments'] = $this->Crud_model->getAllAppointments();
 
 		$this->load->view('template/header');
-		$this->load->view('admin/panel', $data);
+		$this->load->view('admin/panelUser', $data);
+		$this->load->view('template/footer');
+
+		$this->session->set_flashdata('success', '');
+		$this->session->set_flashdata('error', '');
+	}
+
+	public function showUsers()
+	{
+		$data['users'] = $this->Crud_model->getAllUsers();
+		$data['physicians'] = $this->Crud_model->getAllPhysicians();
+		$data['appointments'] = $this->Crud_model->getAllAppointments();
+
+		$this->load->view('template/header');
+		$this->load->view('admin/panelUser', $data);
+		$this->load->view('template/footer');
+
+		$this->session->set_flashdata('success', '');
+		$this->session->set_flashdata('error', '');
+	}
+
+	public function showPhysician()
+	{
+		$data['users'] = $this->Crud_model->getAllUsers();
+		$data['physicians'] = $this->Crud_model->getAllPhysicians();
+		$data['appointments'] = $this->Crud_model->getAllAppointments();
+
+		$this->load->view('template/header');
+		$this->load->view('admin/panelPhysician', $data);
+		$this->load->view('template/footer');
+
+		$this->session->set_flashdata('success', '');
+		$this->session->set_flashdata('error', '');
+	}
+
+	public function showBookings()
+	{
+		$data['users'] = $this->Crud_model->getAllUsers();
+		$data['physicians'] = $this->Crud_model->getAllPhysicians();
+		$data['appointments'] = $this->Crud_model->getAllAppointments();
+
+		$this->load->view('template/header');
+		$this->load->view('admin/panelBookings', $data);
 		$this->load->view('template/footer');
 
 		$this->session->set_flashdata('success', '');
