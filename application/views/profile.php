@@ -21,19 +21,8 @@
 						<div class="row justify-content-center">
 							<div class="col-8">
 								<div class="col-sm-3" style="margin: auto">
-								<?php
-								$user = "user";
-								$field = "pfp";
-								$primaryKeyField = "user_id";
-								$hostname = $this->db->hostname;
-								$username = $this->db->username;
-								$password = $this->db->password;
-								$database = $this->db->database;
-								$pfp = $this->db->selectSingleValue($user, $field, $primaryKeyField, $this->input->get('user_id'),$hostname, $username, $password,$database);
-								?>
-								<?php 
-									echo '<img src="..\\assets\\Images\\'.$pfp.'"style="width: auto; height: 195px;">';
-								?>
+								<img src="<?php echo base_url($this->session->userdata('pfp')); ?>"
+										 style="width: auto; height: 195px;">
 								</div>
 								<?php
 								if ($this->input->get('user_id')) {

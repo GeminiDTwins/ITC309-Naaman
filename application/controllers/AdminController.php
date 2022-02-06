@@ -160,6 +160,23 @@ class AdminController extends CI_Controller
 
 			$this->session->set_flashdata('success', '');
 			$this->session->set_flashdata('error', '');
+		} else if ($this->input->get('user_id')) {
+			$user = $this->Crud_model->getUserData($this->input->get('user_id'));
+			$data['profile']['id'] = $user->account_id;
+			$data['profile']['f_name'] = $user->f_name ?? "";
+			$data['profile']['l_name'] = $user->l_name ?? "";
+			$data['profile']['email'] = $user->email ?? "";
+			$data['profile']['address'] = $user->address ?? "";
+			$data['profile']['postal'] = $user->postcode ?? "";
+			$data['profile']['number'] = $user->phone_number ?? 0;
+			$data['formType'] = 'Update';
+
+			$this->load->view('template/header');
+			$this->load->view('admin/forms/users', $data);
+			$this->load->view('template/footer');
+
+			$this->session->set_flashdata('success', '');
+			$this->session->set_flashdata('error', '');
 		}
 	}
 
