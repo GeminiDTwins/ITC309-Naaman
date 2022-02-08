@@ -24,6 +24,7 @@
 							<div class="col-8">
 							<div class="col-sm-3" style="margin: auto">
 							<?php
+							if ($this->input->get('user_id')) {
 								$user = "user";
 								$field = "pfp";
 								$primaryKeyField = "user_id";
@@ -32,9 +33,12 @@
 								$password = $this->db->password;
 								$database = $this->db->database;
 								$pfp = $this->db->selectSingleValue($user, $field, $primaryKeyField, $this->input->get('user_id'),$hostname, $username, $password,$database);
-								?>
+							}
+							?>
 								<?php 
+								if ($this->input->get('user_id')) {
 									echo '<img src="..\\..\\assets\\Images\\'.$pfp.'"style="width: auto; height: 195px;">';
+								}
 								?>
 								</div>
 								<?php
