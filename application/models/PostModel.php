@@ -147,8 +147,16 @@ class PostModel extends CI_Model {
             'account_id' => $this->session->userdata('id'),
             'vote_id' => $vote_id
         );
-
-        $this->db->insert('account_vote', $account_vote);
+        
+        $this->db->where(array('account_vote.vote_id' == $vote_id));
+        $query = $this->db->get('account_vote');
+        if($query->num_rows()<=0){
+                    $this->db->insert('account_vote', $account_vote);
+        }
+        else{
+            $this->db->where(array('account_vote.vote_id' == $vote_id));
+            $this->db->delete('account_vote');
+        }
 
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
