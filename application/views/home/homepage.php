@@ -137,6 +137,12 @@
                 <a href="<?php echo base_url('index.php/home/view_article/1'); ?>"> What is Mental Health</a>
                 <hr>
                 <a href="<?php echo base_url('index.php/home/view_article/2'); ?>">Risk factors for mental health conditions</a>
+                <hr>
+                <a href="<?php echo base_url('index.php/home/view_article/3'); ?>">Anxiety disorders</a>
+                <hr>
+                <a href="<?php echo base_url('index.php/home/view_article/4'); ?>">Early signs of Mental Illness</a>
+                <hr>
+                <a href="<?php echo base_url('index.php/home/view_article/5'); ?>">Mental Ilness Treatment</a>
             </div>
 
             <div class="left_box mt-3">

@@ -1,6 +1,14 @@
 <div class="card card-small mb-6">
 	<div class="card-header border-bottom">
 		<h6 class="m-0 text-center">Users</h6>
+		<form
+			method="get"
+			action="<?php echo base_url('index.php/AdminController/add') ?>"
+			style="margin-right: 10px"
+		>
+			<input type="hidden" name="type" value="users">
+			<button class="btn btn-success" type="submit"><i class="fa fa-plus"></i></button>
+		</form>
 	</div>
 	<ul class="list-group list-group-flush">
 		<li class="list-group-item p-6">
@@ -38,7 +46,7 @@
 							<td class="d-flex">
 								<form
 									method="get"
-									action="<?php echo base_url('index.php/profile') ?>"
+									action="<?php echo base_url('index.php/AdminController/edit') ?>"
 									style="margin-right: 10px"
 								>
 									<input type="hidden" name="user_id" value="<?php echo $row->account_id; ?>">

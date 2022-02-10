@@ -2,8 +2,8 @@
 	<div class="card card-small mb-4">
 		<div class="card-header border-bottom">
 			<h6 class="m-0 text-center"><?php if ($formType == 'Add') {
-					echo 'Add Physician';
-				} else echo 'Update Physician'; ?></h6>
+					echo 'Add User';
+				} else echo 'Update User'; ?></h6>
 		</div>
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item p-3">
@@ -22,37 +22,33 @@
 					<div class="col">
 						<div class="row justify-content-center">
 							<div class="col-8">
-								<div class="col-sm-3" style="margin: auto">
-								<?php
-								if ($this->input->get('physician_id')) {
-								$user = "physician";
+							<div class="col-sm-3" style="margin: auto">
+							<?php
+							if ($this->input->get('user_id')) {
+								$user = "user";
 								$field = "pfp";
-								$primaryKeyField = "account_id";
+								$primaryKeyField = "user_id";
 								$hostname = $this->db->hostname;
 								$username = $this->db->username;
 								$password = $this->db->password;
 								$database = $this->db->database;
-								$pfp = $this->db->selectSingleValue($user, $field, $primaryKeyField, $this->input->get('physician_id'),$hostname, $username, $password,$database);
-								}?>
+								$pfp = $this->db->selectSingleValue($user, $field, $primaryKeyField, $this->input->get('user_id'),$hostname, $username, $password,$database);
+							}
+							?>
 								<?php 
-								if ($this->input->get('physician_id')) {
+								if ($this->input->get('user_id')) {
 									echo '<img src="..\\..\\assets\\Images\\'.$pfp.'"style="width: auto; height: 195px;">';
 								}
 								?>
 								</div>
 								<?php
-								if ($this->input->get('physician_id')) {
-									$args = 'updatePhysician?user_id=' . $this->input->get('physician_id');
+								if ($this->input->get('user_id')) {
+									$args = 'updateUser?user_id=' . $this->input->get('user_id');
 								} else {
-									$args = 'addPhysician';
+									$args = 'addUser';
 								}
 								echo form_open('AdminController/' . $args); ?>
 								<div class="form-row">
-									<div class="form-group">
-										<label for="title">Title</label>
-										<input name="title" type="text" class="form-control" id="title"
-											   placeholder="Title"
-											   value="<?php echo $profile['title'] ?? '' ?>"></div>
 									<div class="form-group">
 										<label for="f_name">First Name</label>
 										<input name="f_name" type="text" class="form-control" id="f_name"
@@ -119,8 +115,8 @@
 								<?php } ?>
 								<button type="submit" class="btn btn-success">
 									<?php if ($formType == 'Add') {
-										echo 'Add Physician';
-									} else echo 'Update Physician'; ?></button>
+										echo 'Add User';
+									} else echo 'Update User'; ?></button>
 								</form>
 							</div>
 						</div>
@@ -141,8 +137,8 @@
 							<div class="row justify-content-center">
 								<div class="col-8">
 									<?php
-									if ($this->input->get('physician_id')) {
-										$args = '?user_id=' . $this->input->get('physician_id');
+									if ($this->input->get('user_id')) {
+										$args = '?user_id=' . $this->input->get('user_id');
 									} else {
 										$args = '';
 									}
@@ -161,8 +157,8 @@
 													   placeholder="Password">
 												<span><?php echo form_error('cpassword') ?></span>
 												<input type="hidden" name="callback"
-													   value="<?php echo('AdminController/edit?physician_id=' .
-														   $this->input->get('physician_id')) ?>">
+													   value="<?php echo('AdminController/edit?user_id=' .
+														   $this->input->get('user_id')) ?>">
 											</div>
 										</div>
 										<button type="submit" class="btn btn-success">Update Password</button>
