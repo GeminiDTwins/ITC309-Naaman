@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2022 at 03:03 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Feb 11, 2022 at 08:18 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -47,18 +46,19 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `f_name`, `l_name`, `email`, `address`, `postcode`, `phone_number`, `gender`, `created_at`) VALUES
-(1, 'user1', 'UXZVZgMmCioLKwU/USUGNg==', 'Michael', 'Weisang', 'user@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(2, 'user2', 'UXZVZgMmCioLKwU/USUGNg==', 'Dehemi', 'Vihara Dissanayake Liyanage', 'user@email.com', '10 Address st', 2008, 404040404, 'Female', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(3, 'user3', 'UXZVZgMmCioLKwU/USUGNg==', 'Gaury', 'Chetana Thanthirigama', 'user@email.com', '10 Address st', 2008, 404040404, 'Female', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(4, 'user4', 'UXZVZgMmCioLKwU/USUGNg==', 'Sobana', 'Handi Achini Thisarangi De Silva', 'user@email.com', '10 Address st', 2008, 404040404, 'Feale', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(5, 'user5', 'UXZVZgMmCioLKwU/USUGNg==', 'Tom', 'Holand', 'user@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(6, 'staff1', 'UXZVZgMmCioLKwU/USUGNg==', 'Robert', 'Downey Jr.', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(7, 'staff2', 'UXZVZgMmCioLKwU/USUGNg==', 'Chris', 'Hemsworth', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(8, 'staff3', 'UXZVZgMmCioLKwU/USUGNg==', 'Chris', 'Evan', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(9, 'staff4', 'UXZVZgMmCioLKwU/USUGNg==', 'Mark', 'Ruffallo', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(10, 'staff5', 'UXZVZgMmCioLKwU/USUGNg==', 'Tom', 'Hiddleston', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
-(11, 'admin', 'Cx1WYFdsATtWbw9rBTFSJw==', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 'atk', '$2y$10$EJHbVQWB9ponywqT7KqfXuOHkGVEW9w/xKFvvayGLcsBjSqwZSQ5a', 'Dehemi', 'Vihara', 'atk@mail.com', NULL, NULL, NULL, NULL, 'Sat, 5-Feb-2022 7:48:50 CET');
+(1, 'user1', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Michael', 'Weisang', 'user@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(2, 'user2', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Dehemi', 'Vihara Dissanayake Liyanage', 'user@email.com', '10 Address st', 2008, 404040404, 'Female', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(3, 'user3', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Gaury', 'Chetana Thanthirigama', 'user@email.com', '10 Address st', 2008, 404040404, 'Female', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(4, 'user4', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Sobana', 'Handi Achini Thisarangi De Silva', 'user@email.com', '10 Address st', 2008, 404040404, 'Feale', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(5, 'user5', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Tom', 'Holand', 'user@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(6, 'staff1', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Robert', 'Downey Jr.', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(7, 'staff2', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Chris', 'Hemsworth', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(8, 'staff3', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Chris', 'Evan', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(9, 'staff4', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Mark', 'Ruffallo', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(10, 'staff5', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Tom', 'Hiddleston', 'staff@email.com', '10 Address st', 2008, 404040404, 'Male', 'Sunday, 09-Jan-2022 07:32:14 CET'),
+(11, 'admin', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'atk', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Dehemi', 'Vihara', 'atk@mail.com', NULL, NULL, NULL, NULL, 'Sat, 5-Feb-2022 7:48:50 CET'),
+(13, 'Dehemi', '$2y$10$nP5rGAz5trSIK3NjaQqCYeS3J3NTtHQT2qwnjPfVXFAgHE316FzyG', 'Dahami ', 'Vihara', 'sample@gamail.com', NULL, NULL, NULL, NULL, 'Fri, 11-Feb-2022 8:11:00 CET');
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,7 @@ CREATE TABLE `article` (
   `description` varchar(10000) DEFAULT NULL,
   `vote_id` int(11) DEFAULT NULL,
   `created_date` date DEFAULT NULL,
-  `vote_count` int(11) NOT NULL DEFAULT '0',
+  `vote_count` int(11) NOT NULL DEFAULT 0,
   `img_name` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -231,7 +231,7 @@ CREATE TABLE `message` (
   `message_id` int(11) NOT NULL,
   `from_account_id` int(11) NOT NULL,
   `to_account_id` int(11) NOT NULL,
-  `message` text
+  `message` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -507,7 +507,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `article`
