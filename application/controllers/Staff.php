@@ -20,6 +20,7 @@ class staff extends CI_Controller {
     public function index() {
         $data['posts'] = $this->PostModel->get_posts();
         $data['user'] = $this->PostModel->get_user();
+		$data['articles'] = $this->PostModel->get_article();
         
         $this->load->view('template/header');
         $this->load->view('home/staffpage', $data);

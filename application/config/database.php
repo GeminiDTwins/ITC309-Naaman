@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'Admin12!',
+	'password' => '',
 	'database' => 'naaman',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -92,5 +92,7 @@ $db['default'] = array(
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-	'save_queries' => TRUE
+	'save_queries' => TRUE,
+	'dbport' => '3306'
+
 );
