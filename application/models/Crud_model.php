@@ -127,15 +127,17 @@ class Crud_model extends CI_Model
 
 	public function getUserData($id = null)
 	{
+		$this->db->select('*');
+		$this->db->from('account');
+	
 		if (!$id) {
 			$id = $this->session->userdata('id');
+		}else{
+			$this->db->join('user', 'account.account_id = user.account_id');
 		}
-		
-		$this->db->select('account.account_id,user.user_id,nickname,f_name,l_name,email,address, '
-			. 'postcode,phone_number,gender,user_description,pfp,created_at');
-		//$this->db->from('account');
-		$this->db->join('user', 'account.account_id = user.account_id ');
-		return $this->db->get_where('account', ['account.account_id' => $id])->row();
+
+		$this->db->where('account.account_id', $id);
+		return $this->db->get()->row();
 	}
 
 	public function getPhysicianData()
