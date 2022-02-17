@@ -12,7 +12,7 @@
 				</p>
 				<hr>
 				<div class="text-center">
-					<a href="<?php echo base_url('index.php/profile'); ?>"
+					<a href="<?php echo base_url('profile'); ?>"
 					   class="font-weight-bold text-decoration-none text-center">
 						View My Profile
 					</a>
@@ -25,7 +25,7 @@
 				</p>
 				<hr>
                 <div class="text-center">
-                    <a href="<?php echo base_url('index.php/home/Appointment'); ?>" class="font-weight-bold text-decoration-none text-center">
+                    <a href="<?php echo base_url('home/Appointment'); ?>" class="font-weight-bold text-decoration-none text-center">
                         Make Appointment
                     </a>
                 </div>

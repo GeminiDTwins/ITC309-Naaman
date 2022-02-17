@@ -12,7 +12,7 @@
                 </p>
                 <hr>
                 <div class="text-center">
-                    <a href="" class="font-weight-bold text-decoration-none text-center">
+                    <a href="<?php echo base_url('physicians'); ?>" class="font-weight-bold text-decoration-none text-center">
                         View My Profile
                     </a>
                 </div>
@@ -24,7 +24,7 @@
                 </p>
                 <hr>
                 <div class="text-center">
-                    <a href="" class="font-weight-bold text-decoration-none text-center">
+                    <a href="<?php echo base_url('physicians/appointment'); ?>" class="font-weight-bold text-decoration-none text-center">
                         Manage appointment
                     </a>
                 </div>
@@ -111,11 +111,17 @@
             </div>
             
             <div class="left_box mt-3">
-                <a href=""> Create article</a>
+                
                 <hr>
-                <a href=""> Article Link 1</a>
-                <hr>
-                <a href=""> Article Link 1</a>
+				<?php foreach ($articles as $article):
+					?>
+
+                <a href="<?php echo base_url('Physicians/view_article/'.$article['article_id']) ?>"> <?php echo $article['article_title'];?></a>
+				<hr>
+				<?php endforeach; ?>
+				<a href="<?php echo base_url('Physicians/articles/') ?>"> My article</a>
+                <!-- 
+                <a href=""> Article Link 1</a> -->
             </div>
 
             <div class="left_box mt-3">

@@ -127,10 +127,25 @@ class Crud_model extends CI_Model
 
 	public function getUserData($id = null)
 	{
+		$this->db->select('*');
+		$this->db->from('account');
+	
 		if (!$id) {
 			$id = $this->session->userdata('id');
+		}else{
+			$this->db->join('user', 'account.account_id = user.account_id');
 		}
-		return $this->db->get_where('account', ['account_id' => $id])->row();
+
+		$this->db->where('account.account_id', $id);
+		return $this->db->get()->row();
+	}
+
+	public function getPhysicianData()
+	{
+		
+		$id = $this->session->userdata('id');
+		
+		return $this->db->get_where('physician', ['account_id' => $id])->row();
 	}
 
 	public function getAllUsers()
@@ -232,6 +247,22 @@ class Crud_model extends CI_Model
 		$this->db->join('physician', 'online_consultation.physician_id = physician.physician_id ');
 		$this->db->join('account as pa', 'physician.account_id = pa.account_id ');
 		$this->db->join('account as ua', 'user.account_id = ua.account_id ');
+		return $this->db->get()->result();
+	}
+
+	public function getPhysiciansAppointments()
+	{
+		$id = $this->session->userdata('id');
+		$this->db->select('oa_id,booking_date, consultation_date, time,' .
+			'CONCAT(physician.title, \' \', pa.f_name, \' \', pa.l_name) as physician_name, ' .
+			'CONCAT(ua.f_name, \' \', ua.l_name) as patient_name, ua.account_id as user_account_id');
+		$this->db->from('online_consultation');
+		$this->db->join('user', 'online_consultation.user_id = user.user_id ');
+		$this->db->join('physician', 'online_consultation.physician_id = physician.physician_id ');
+		$this->db->join('account as pa', 'physician.account_id = pa.account_id ');
+		$this->db->join('account as ua', 'user.account_id = ua.account_id ');
+		$this->db->where('physician.account_id',$id);
+
 		return $this->db->get()->result();
 	}
 

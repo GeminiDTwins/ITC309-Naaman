@@ -22,7 +22,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
 	<div class="container">
-		<a class="navbar-brand" href="<?php echo base_url('index.php/home'); ?>">Naaman</a>
+		<a class="navbar-brand" href="<?php echo base_url('home'); ?>">Naaman</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
 				aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -51,7 +51,7 @@
                margin-left: 8px;">
             </li>
             <li class="nav-item">
-               <a class="nav-link" aria-current="page" href="<?php echo base_url('index.php/login/signout'); ?>">
+               <a class="nav-link" aria-current="page" href="<?php echo base_url('login/signout'); ?>">
                     <i class="fas fa-sign-out-alt">Log Out</i>
                 </a>
             </li>

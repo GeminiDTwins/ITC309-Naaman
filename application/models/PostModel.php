@@ -24,7 +24,7 @@ class PostModel extends CI_Model {
     }
     
         public function get_article($article_id = FALSE) {
-        $this->db->select('article_id,article.physician_id,article.title,description,article.vote_id,physician.title,pfp,count(account_vote.account_id) as total_like');
+        $this->db->select('article_id,article.physician_id,article.title as article_title,description,article.vote_id,physician.title,pfp,count(account_vote.account_id) as total_like');
         $this->db->from('article');
         $this->db->join('physician', 'article.physician_id = physician.physician_id');
         $this->db->join('account_vote', 'article.vote_id = account_vote.vote_id', 'left');
@@ -36,6 +36,23 @@ class PostModel extends CI_Model {
         }
 
         $this->db->where(array('article_id' => $article_id));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+	public function get_article_by_physician($physician_id = 0) {
+        $this->db->select('article_id,article.physician_id,article.title as article_title,description,article.vote_id,physician.title,pfp,count(account_vote.account_id) as total_like');
+        $this->db->from('article');
+        $this->db->join('physician', 'article.physician_id = physician.physician_id');
+        $this->db->join('account_vote', 'article.vote_id = account_vote.vote_id', 'left');
+        $this->db->group_by('article_id');
+        $this->db->order_by('article_id', 'DESC');
+        // if ($article_id === FALSE) {
+        //     $query = $this->db->get();
+        //     return $query->result_array();
+        // }
+
+        $this->db->where(array('article.physician_id' => $physician_id));
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -161,6 +178,44 @@ class PostModel extends CI_Model {
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
         } else {
+            $this->db->trans_commit();
+        }
+    }
+
+	public function articleCreate($data) {
+        $this->db->trans_begin();
+
+        $this->db->insert('article', $data);
+
+        if ($this->db->trans_status() === FALSE) {
+			
+            $this->db->trans_rollback();
+        } else {
+			$this->session->set_flashdata('success', 'Article successfully created.');
+            $this->db->trans_commit();
+        }
+    }
+
+	public function deleteArticle($id)
+	{
+		$this->db->where('article_id', $id);
+		$this->db->delete('article');
+	}
+
+	public function articleEdit($data, $article_id) {
+        $this->db->trans_begin();
+
+        $where = "article_id = '$article_id'";
+		$this->db->update_string('article', $data, $where);
+		//$this->db->query($str);
+
+		$str = $this->db->update_string('article', $data, $where);
+		$this->db->query($str);
+        if ($this->db->trans_status() === FALSE) {
+			
+            $this->db->trans_rollback();
+        } else {
+			$this->session->set_flashdata('success', 'Article successfully updated.');
             $this->db->trans_commit();
         }
     }
