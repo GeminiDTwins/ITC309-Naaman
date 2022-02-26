@@ -23,22 +23,8 @@
 						<div class="row justify-content-center">
 							<div class="col-8">
 								<div class="col-sm-3" style="margin: auto">
-								<?php
-								if ($this->input->get('physician_id')) {
-								$user = "physician";
-								$field = "pfp";
-								$primaryKeyField = "account_id";
-								$hostname = $this->db->hostname;
-								$username = $this->db->username;
-								$password = $this->db->password;
-								$database = $this->db->database;
-								$pfp = $this->db->selectSingleValue($user, $field, $primaryKeyField, $this->input->get('physician_id'),$hostname, $username, $password,$database);
-								}?>
-								<?php 
-								if ($this->input->get('physician_id')) {
-									echo '<img src="..\\..\\assets\\Images\\'.$pfp.'"style="width: auto; height: 195px;">';
-								}
-								?>
+									<img src="<?php echo base_url($this->session->userdata('pfp')); ?>"
+										 style="width: auto; height: 195px;">
 								</div>
 								<?php
 								if ($this->input->get('physician_id')) {

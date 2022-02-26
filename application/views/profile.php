@@ -21,13 +21,8 @@
 						<div class="row justify-content-center">
 							<div class="col-8">
 								<div class="col-sm-3" style="margin: auto">
-								<img src="<?php echo base_url($this->session->userdata('pfp')); ?>"
+									<img src="<?php echo base_url($this->session->userdata('pfp')); ?>"
 										 style="width: auto; height: 195px;">
-										 <h5 class="text-center pt-3">
-					<?php echo $this->session->userdata('nick') ?>
-				</h5>
-				<p class="text-muted text-center">
-					<?php echo $this->session->userdata('status') ?>
 								</div>
 								<?php
 								if ($this->input->get('user_id')) {

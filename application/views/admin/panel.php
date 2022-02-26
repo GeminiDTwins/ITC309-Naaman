@@ -17,7 +17,8 @@
 		</li>
 	</ul>
 	<?php
-	$this->load->view('admin/adminPage');
 	$this->load->view('admin/users');
+	$this->load->view('admin/physicians');
+	$this->load->view('admin/appointments');
 	?>
 </div>
