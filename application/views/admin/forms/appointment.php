@@ -36,13 +36,11 @@
 											<?php
 											if (isset($users)):
 												foreach ($users as $row) {
-													$name = $row->f_name." ".$row->l_name;
+													$name = $row->f_name . " " . $row->l_name;
 													?>
 													<option value="<?php echo $row->user_id ?>" <?php
-													if(isset($appointment)){
-														if ($appointment['patient_id'] == $row->user_id) {
-															echo 'selected';
-														}
+													if ($appointment['patient_id'] == $row->user_id) {
+														echo 'selected';
 													}
 													?>
 													><?php echo $name ?></option>
@@ -61,10 +59,8 @@
 														$name = $row->title . " " . $row->f_name . " " . $row->l_name;
 														?>
 														<option value="<?php echo $row->physician_id ?>" <?php
-														if(isset($appointment)){
-															if ($appointment['physician_id'] == $row->physician_id) {
-																echo 'selected';
-															}
+														if ($appointment['physician_id'] == $row->physician_id) {
+															echo 'selected';
 														}
 														?>
 														><?php echo $name ?></option>
